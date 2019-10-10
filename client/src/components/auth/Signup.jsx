@@ -35,22 +35,22 @@ class Signup extends Component {
   render(){
     return(
       // more code will be added here
-      <div>
-      <form onSubmit={this.handleFormSubmit}>
-        <label>Username:</label>
-        <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
-        
-        <label>Password:</label>
-        <textarea name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
-        
-        <input type="submit" value="Signup" />
-      </form>
+      <main>
+        <form onSubmit={this.handleFormSubmit}>
+          <label>Username:</label>
+          <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+          
+          <label>Password:</label>
+          <textarea name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+          
+          <input type="submit" value="Signup" />
+        </form>
 
-      <p>Already have account? 
-          <Link to={"/"}> Login</Link>
-      </p>
+        <p>Already have account? 
+            <Link to={"/login"}> Login</Link>
+        </p>
 
-    </div>
+    </main>
     )
   }
 }

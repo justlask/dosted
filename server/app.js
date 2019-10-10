@@ -87,6 +87,7 @@ app.use('/', index);
 // app.use('/api/projects', require('./routes/project-routes'))
 // app.use('/api/tasks', require('./routes/task-routes'))
 app.use('/api/auth', require('./routes/auth-routes'))
-
+app.use('/api/action', require('./routes/action-routes'))
+app.use('/api/suggestions', require('./routes/suggestion-routes'))
 
 module.exports = app;

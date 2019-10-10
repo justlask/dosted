@@ -4,6 +4,7 @@ const authRoutes = express.Router();
 
 const passport   = require('passport');
 const bcrypt     = require('bcryptjs');
+const uploadCloud = require('../configs/cloudinary');
 
 // require the user model !!!!
 const User       = require('../models/user-model');
@@ -111,6 +112,13 @@ authRoutes.get('/loggedin', (req, res, next) => {
   res.status(403).json({ message: 'Unauthorized' });
 });
 
-module.exports = authRoutes;
+
+authRoutes.get('/profile', (req,res,next) => {
+
+})
+
+authRoutes.post('/edit', uploadCloud.single('photo'), (req,res,next) => {
+
+})
 
 module.exports = authRoutes;

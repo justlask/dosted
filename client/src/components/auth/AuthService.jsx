@@ -29,6 +29,15 @@ class AuthService {
     .then(response => response.data)
   }
 
+  allActions = () => {
+    return this.service.get('/action')
+    .then(response => response.data)
+  }
+
+  randomAction = () => {
+    return this.service.get('/action/random')
+    .then(response => response.data)
+  }
 }
 
 export default AuthService;

@@ -8,13 +8,14 @@ export default class NewSuggest extends Component {
     title: ''
   }
 
-  handleSuggestSubmit = e => {
+  handleSuggestSubmit = () => {
+    console.log(this.state)
     let title = this.state.title
     let userID = this.props.loggedInUser
-    axios.post('http://localhost:5000/api/suggestions/new', {userID, title})
-    .then(response => {
-    }).catch(err => console.log(err))
-    this.props.history.push('/')
+    console.log('YOLO')
+    // axios.post('http://localhost:5000/api/suggestions/new', {userID, title})
+    // .then(response => {
+    // }).catch(err => console.log(err))
   }
 
   handleSuggestChange = e => {
@@ -33,7 +34,7 @@ export default class NewSuggest extends Component {
 
           <label for="title"><b>What's one small thing that anyone could do to make the world a better place?</b></label><br></br>
           <input type="text" onChange={(e) => this.handleSuggestChange(e)} /> 
-          <input type="submit" value="Submit" onSubmit={e => this.handleSuggestSubmit()} />
+          <input type="submit" value="Submit" onClick={() => this.handleSuggestSubmit()} />
         </form>
         </div>
       </main>

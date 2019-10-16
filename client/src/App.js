@@ -14,6 +14,8 @@ import Footer from './components/Footer'
 import TodayAction from './components/actions/TodayAction'
 import Profile from './components/profile/Profile'
 import EditProfile from './components/profile/EditProfile'
+import Leaderboard from './components/Leaderboard';
+import LeaderProfile from './components/profile/LeaderProfile';
 
 class App extends Component {
   constructor(props){
@@ -50,12 +52,14 @@ class App extends Component {
         <div className="App">
           <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
           <Switch>
-            {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} /> */}
             <Route exact path='/' render={() => <Home user={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/actions' component={AllActions} />
             <ProtectedRoute user={this.state.loggedInUser} path="/profile" component={Profile} />
             <ProtectedRoute user={this.state.loggedInUser} path='/action' component={TodayAction} />
             <ProtectedRoute user={this.state.loggedInUser} path="/edit" component={EditProfile} getUser={this.getTheUser} />
+            <ProtectedRoute user={this.state.loggedInUser} path="/leaderboard" component={Leaderboard}/>
+            <ProtectedRoute user={this.state.loggedInUser} path='/leaderboard/profile/:id' component={LeaderProfile} />
+                        {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} /> */}
           </Switch>
           <Footer />
         </div>

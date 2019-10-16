@@ -80,6 +80,11 @@ router.put('/completed', (req,res,next) => {
   }).catch(err => console.log(err))
 })
 
+router.get('/leaderboard', (req,res,next) => {
+  User.find().sort({currentStreak: 'descending'}).then(data => {
+    res.json(data)
+  }).catch(err => console.log(err))
+})
 
 
 

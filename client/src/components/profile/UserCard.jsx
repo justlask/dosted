@@ -1,7 +1,68 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import Button from '../Button'
+import AuthService from '../auth/AuthService'
 
 export default class UserCard extends Component {
+  constructor(props){
+    super(props);
+    this.service = new AuthService();
+  }
+
+  addFriend(e) {
+    let userID = this.props.loggedInUser._id
+    let friendID = this.props.leader._id
+    this.service.follow(userID, friendID)
+    .then(response => {
+
+
+
+      //need to refresh this card to show unfollow!!!
+
+
+
+
+
+
+
+    }).catch(err => console.log(err))
+  }
+
+
+
+
+
+  removeFriend(e) {
+    let userID = this.props.loggedInUser._id
+    let friendID = this.props.leader._id
+    this.service.unfollow(userID, friendID)
+    .then(response => {
+
+
+
+      //need to refresh this card to show unfollow!!!
+
+
+
+
+
+
+
+    }).catch(err => console.log(err))
+  }
+  handleButton(){
+    if (this.props.loggedInUser._id === this.props.leader._id) {
+      return
+    }
+    if (this.props.loggedInUser.friends.includes(this.props.leader._id)) {
+      return <Button onClick={() => this.removeFriend()} name="unfollow" />
+    }
+    else {
+      return <Button onClick={() => this.addFriend()} name="follow" />
+    }
+  }
+
+
   render() {
     return (
         <div className="card mb-3">
@@ -15,6 +76,7 @@ export default class UserCard extends Component {
                 <p className="card-text">{this.props.leader.bio}</p>
                 <p className="card-text"><small className="text-muted">Actions Completed: {this.props.leader.actionsCompleted}</small></p>
                 <p className="card-text"><small className="text-muted">Streak: {this.props.leader.currentStreak}</small></p>
+                {this.handleButton()}
               </div>
             </div>
           </div>

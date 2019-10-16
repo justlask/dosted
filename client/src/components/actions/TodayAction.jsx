@@ -9,7 +9,8 @@ import Sidebar from '../Sidebar'
 
 export default class TodayAction extends Component {
   state = {
-    action: {}
+    action: {},
+    actionCompleted: false,
   }
   constructor(props){
     super(props);
@@ -41,30 +42,45 @@ export default class TodayAction extends Component {
     this.service.actionCompleted(userID, actionID)
     .then(response => {
       this.setState({
-
+        actionCompleted: true
       })
     }).catch(err => console.log(err))
   }
   
 
   render() {
-    return (
-      <main>
-        <Sidebar />
-        <div className="half">
-            <div className="card text-white bg-success mb-3">
-              <div className="card-header">Today's DOST</div>
-              <div className="card-body">
-                <p className="card-text">{this.state.action.title}</p>
-                <p className="card-text small">This task has been completed {this.state.action.timesCompleted} times</p>
-              </div>
-              <div className="buttons">
-                <Button onClick={() => {this.handleCompleted()}} name={<FontAwesomeIcon icon={faCheck} />}/>
-                <Button link="/action" name={<FontAwesomeIcon icon={faTimes} />}/>
-              </div>
+
+    if (this.state.actionCompleted === false) {
+      return (
+        <main>
+          <Sidebar />
+          <div className="half">
+              <div className="card text-white bg-success mb-3">
+                <div className="card-header">Today's DOST</div>
+                <div className="card-body">
+                  <p className="card-text">{this.state.action.title}</p>
+                  <p className="card-text small">This task has been completed {this.state.action.timesCompleted} times</p>
+                </div>
+                <div className="buttons">
+                  <Button onClick={() => {this.handleCompleted()}} name={<FontAwesomeIcon icon={faCheck} />}/>
+                  <Button link="/action" name={<FontAwesomeIcon icon={faTimes} />}/>
+                </div>
+            </div>
           </div>
-        </div>
-      </main>
-    )
+        </main>
+      )
+    }
+    else {
+      return (
+        <main>
+          <Sidebar />
+          <div className="half">
+            <h1>CONGRATS!</h1>
+            <h3>You've done your part!</h3>
+          </div>
+        </main>
+      )
+    }
+
   }
 }

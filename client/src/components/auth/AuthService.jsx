@@ -34,6 +34,16 @@ class AuthService {
     .then(response => response.data)
   }
 
+  follow = (userID, friendID) => {
+    return this.service.put('/user/follow', {userID, friendID})
+    .then(response => response.data)
+  }
+
+  unfollow = (userID, friendID) => {
+    return this.service.put('/user/unfollow', {userID, friendID})
+    .then(response => response.data)
+  }
+
   deleteProfile = (id) => {
     return this.service.delete('/auth/delete')
     .then(response => response.data)

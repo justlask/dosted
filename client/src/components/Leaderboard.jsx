@@ -21,7 +21,7 @@ export default class Leaderboard extends Component {
         <Sidebar />
         <div className="halfrow">
         {this.state.leaderboard.map((leader, i) => {
-          return <UserCard key={i} leader={leader}/>
+          return <UserCard loggedInUser={this.props.loggedInUser} key={i} leader={leader}/>
         })}
         </div>
       </main>

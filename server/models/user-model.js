@@ -5,11 +5,16 @@ const userSchema = new Schema({
   username: String,
   bio: String,
   password: String,
-  image: String,
+  image: {type: String, default: 'https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg'},
   actionsCompleted: {type: Number, default: 0},
   currentStreak: {type: Number, default: 0},
+  lastDayCompleted: Date,
   friends: [ { type : Schema.Types.ObjectId, ref: 'User' } ],
-  lastAction: {type: Schema.Types.ObjectId, ref: 'Actions' }
+  actions: [{type: Schema.Types.ObjectId, ref: 'Actions'}],
+  location: {
+    city: String,
+    state: String
+  },
 }, 
 {
   timestamps: true

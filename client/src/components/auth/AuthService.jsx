@@ -29,6 +29,21 @@ class AuthService {
     .then(response => response.data)
   }
 
+  getProfile = () => {
+    return this.service.get('/auth/profile')
+    .then(response => response.data)
+  }
+
+  deleteProfile = (id) => {
+    return this.service.delete('/auth/delete')
+    .then(response => response.data)
+  }
+
+  actionCompleted = (userID, actionID) => {
+    return this.service.put('/user/completed', {userID, actionID})
+    .then(response => response.data)
+  }
+
   allActions = () => {
     return this.service.get('/action')
     .then(response => response.data)

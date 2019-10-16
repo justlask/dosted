@@ -113,12 +113,11 @@ authRoutes.get('/loggedin', (req, res, next) => {
 });
 
 
-authRoutes.get('/profile', (req,res,next) => {
-
-})
-
-authRoutes.post('/edit', uploadCloud.single('photo'), (req,res,next) => {
-
+authRoutes.delete('/delete', (req,res,next) => {
+        User.findByIdAndRemove(req.user.id).then(data => {
+          req.logout();
+          res.status(200).json({ message: 'Deleted successfully' });
+        }).catch(err => next(err))
 })
 
 module.exports = authRoutes;

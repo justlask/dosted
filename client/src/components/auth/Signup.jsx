@@ -35,22 +35,22 @@ class Signup extends Component {
   render(){
     return(
       // more code will be added here
-      <main>
-        <form onSubmit={this.handleFormSubmit}>
+      <div className="flexcolfull">
+        <form onSubmit={this.handleFormSubmit} className="signup-login">
           <label>Username:</label>
-          <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+          <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
           
           <label>Password:</label>
-          <textarea name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+          <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
           
-          <input type="submit" value="Signup" />
+          <input className="submitbtn" type="submit" value="Signup" />
         </form>
 
         <p>Already have account? 
             <Link to={"/login"}> Login</Link>
         </p>
 
-    </main>
+    </div>
     )
   }
 }

@@ -9,6 +9,11 @@ class Login extends Component {
     this.service = new AuthService();
   }
 
+  componentDidMount() {
+    console.log("THIS PROPSSSS +>>>>>>>" + this.props)
+    console.log("THIS STATEEEEEE +>>>>>>>>" + this.state)
+  }
+
   handleFormSubmit = (event) => {
     event.preventDefault();
     const username = this.state.username;
@@ -39,14 +44,14 @@ class Login extends Component {
       )
     } else {
       return ( 
-          <div>
-            <form onSubmit={this.handleFormSubmit}>
+          <div className="flexcolfull">
+            <form onSubmit={this.handleFormSubmit} className="signup-login">
             <label>Username:</label>
-            <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
+            <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
                     <label>Password:</label>
-                    <input type="text" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
+                    <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
                     
-                <input type="submit" value="Login" />
+                <input type="submit" value="Login" className="submitbtn" />
                 </form>
                 <p>Don't have account? 
                     <Link to={"/signup"}> Signup</Link>
@@ -55,30 +60,6 @@ class Login extends Component {
       )
     }
   }
-    
-  // render(){
-  //   return(
-  //     <main>
-  //       {(this.state.loggedInUser === false) ? 
-  //         <div>
-  //           <form onSubmit={this.handleFormSubmit}>
-  //           <label>Username:</label>
-  //           <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/>
-  //                   <label>Password:</label>
-  //                   <input type="text" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} />
-                    
-  //               <input type="submit" value="Login" />
-  //               </form>
-  //               <p>Don't have account? 
-  //                   <Link to={"/signup"}> Signup</Link>
-  //               </p>
-  //           </div> 
-  //           : <Redirect to="/actions" />
-  //   }
-
-  //     </main>
-  //   )
-  // }
 }
 
 export default Login;

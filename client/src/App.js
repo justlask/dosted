@@ -13,6 +13,7 @@ import Home from './components/Home'
 import Footer from './components/Footer'
 import TodayAction from './components/actions/TodayAction'
 import Profile from './components/profile/Profile'
+import EditProfile from './components/profile/EditProfile'
 
 class App extends Component {
   constructor(props){
@@ -50,9 +51,11 @@ class App extends Component {
           <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
           <Switch>
             {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} /> */}
+            <Route exact path='/' render={() => <Home user={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/actions' component={AllActions} />
             <ProtectedRoute user={this.state.loggedInUser} path="/profile" component={Profile} />
             <ProtectedRoute user={this.state.loggedInUser} path='/action' component={TodayAction} />
+            <ProtectedRoute user={this.state.loggedInUser} path="/edit" component={EditProfile} getUser={this.getTheUser} />
           </Switch>
           <Footer />
         </div>

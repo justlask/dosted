@@ -98,15 +98,15 @@ router.delete('/:id', (req, res, next)=>{
 
 
 // GET route => to retrieve a specific task
-router.get(':ActionsId/tasks/:taskId', (req, res, next) => {
-  Task.findById(req.params.taskId)
-  .then(theTask =>{
-      res.json(theTask);
-  })
-  .catch( err =>{
-      res.json(err);
-  })
-});
+// router.get('/:ActionsId/tasks/:taskId', (req, res, next) => {
+//   Task.findById(req.params.taskId)
+//   .then(theTask =>{
+//       res.json(theTask);
+//   })
+//   .catch( err =>{
+//       res.json(err);
+//   })
+// });
 
 
 module.exports = router;

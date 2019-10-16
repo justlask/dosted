@@ -28,10 +28,10 @@ class Navbar extends Component {
       return(
         <nav>
             <div className="mainnav">
-              <Link to="/leaderboard"><FontAwesomeIcon icon={faChartLine} /></Link>
+              {/* <Link to="/leaderboard"><FontAwesomeIcon icon={faChartLine} /></Link> */}
               <Link to="/"><h1>DOSTED</h1></Link>
               <div>
-              <Link to="/profile"><FontAwesomeIcon icon={faUser} /></Link>
+              {/* <Link to="/profile"><FontAwesomeIcon icon={faUser} /></Link> */}
               <Link to='/'>
                 <button onClick={() => this.logoutUser()}>Logout</button>
               </Link>

@@ -84,10 +84,12 @@ router.put('/completed', (req,res,next) => {
     //finds the user and does some time checks and updates user accordingly
     var now = moment().unix();
     let updateObj = {
-      $push: {actions: req.body.actionID}
+      $push: {actions: req.body.actionID},
+      lastDayCompleted: moment().unix()
     };
-    (data.lastDayCompleted === undefined) ? updateObj.lastDayCompleted = moment().unix() : updateObj.lastDayCompleted = moment().unix();
-    (((now - data.lastDayCompleted) <= 86400000) || data.lastDayCompleted === undefined) ? updateObj.currentStreak = data.currentStreak + 1 : updateObj.currentStreak = 0
+    if (data.lastDayCompleted === undefined) updateObj.currentStreak = 1
+    if ((now - data.lastDayCompleted) > 86400000 && (now - data.lastDayCompleted) < 172800000) updateObj.currentStreak = data.currentStreak +1
+    if ((now - data.lastDayCompleted) > 172800000) updateObj.currentStreak = 0
     updateObj.actionsCompleted = data.actionsCompleted + 1
 
     //update user for doing action
@@ -110,8 +112,11 @@ router.put('/completed', (req,res,next) => {
   }).catch(err => console.log(err))
 })
 
+
+
+
 router.get('/leaderboard', (req,res,next) => {
-  User.find().sort({currentStreak: 'descending'}).then(data => {
+  User.find().sort({currentStreak: -1, actionsCompleted: -1}).then(data => {
     res.json(data)
   }).catch(err => console.log(err))
 })

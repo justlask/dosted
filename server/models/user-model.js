@@ -15,6 +15,7 @@ const userSchema = new Schema({
     city: String,
     state: String
   },
+  isAdmin: {type: Boolean, default: false}
 }, 
 {
   timestamps: true

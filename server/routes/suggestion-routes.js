@@ -6,7 +6,7 @@ const Suggestions = require('../models/suggestions');
 const User    = require('../models/user-model')
 
 
-//get all tasks
+//get all suggestions
 router.get('/', (req,res,next) => {
   Suggestions.find().then(response => {
     res.json(response)
@@ -14,6 +14,15 @@ router.get('/', (req,res,next) => {
     res.json(err)
   })
 })
+
+
+
+router.use((req,res,next) => {
+  if (!req.user || req.user.isAdmin === false) {
+    res.status(403).json({ message: 'Unauthorized' });
+  }
+  next();
+}); 
 
 //find Suggestions by ids
 router.get('/:id', (req, res, next)=>{

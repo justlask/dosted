@@ -34,6 +34,11 @@ class AuthService {
     .then(response => response.data)
   }
 
+  findFriends = (userID) => {
+    return this.service.get(`/user/friends/${userID}`)
+    .then(response => response.data)
+  }
+
   follow = (userID, friendID) => {
     return this.service.put('/user/follow', {userID, friendID})
     .then(response => response.data)

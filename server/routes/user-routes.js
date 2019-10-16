@@ -46,6 +46,15 @@ router.put('/profile/edit/:id', uploadCloud.single('photo'), (req, res, next)=>{
 //     state: String
 //   },
 
+
+router.get('/friends/:id', (req,res,next) => {
+  console.log(req.body)
+  User.findById(req.params.id).populate('friends').then(data => {
+    console.log(data)
+    res.json(data)
+  }).catch(err => console.log(err))
+})
+
 router.put('/follow', (req,res,next) => {
   //add person to following
   let userID = req.body.userID

@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
 import Button from '../Button'
 import Sidebar from '../Sidebar'
+import AuthService from '../auth/AuthService'
 
 export default class LeaderProfile extends Component {
+  constructor(props){
+    super(props);
+    this.service = new AuthService();
+  }
+
+
+  componentDidMount() {
+    console.log(this.props)
+  }
   render() {
     return (
       <main>
-        <h1>THIS WILL BE THE LEADERS PROFILE VIEW</h1>
         <Sidebar />
         <div className="halfrow">
           <div class="card mb-3">
@@ -24,7 +33,6 @@ export default class LeaderProfile extends Component {
               </div>
             </div>
           </div>
-          <Button link="edit" name="Edit Profile"/>
         </div>
       </main>
     )

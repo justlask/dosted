@@ -72,7 +72,9 @@ export default class UserCard extends Component {
             </div>
             <div className="col-md-8">
               <div className="card-body">
-                <Link to={`/leaderboard/profile/${this.props.leader._id}`}><h5 className="card-title">@{this.props.leader.username}</h5></Link>
+
+                {/* {{profileid={this.props.leader._id}}} */}
+                <Link to={`/profile/${this.props.leader._id}`} ><h5 className="card-title">@{this.props.leader.username}</h5></Link>
                 <p className="card-text">{this.props.leader.bio}</p>
                 <p className="card-text"><small className="text-muted">Actions Completed: {this.props.leader.actionsCompleted}</small></p>
                 <p className="card-text"><small className="text-muted">Streak: {this.props.leader.currentStreak}</small></p>

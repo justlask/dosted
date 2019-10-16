@@ -7,7 +7,6 @@ import Navbar from './components/navbar/Navbar';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import ProtectedRoute from './components/auth/protectedRoute';
-import SingleAction from './components/actions/SingleAction'
 import AllActions from './components/actions/AllActions'
 import Home from './components/Home'
 import Footer from './components/Footer'
@@ -17,6 +16,9 @@ import EditProfile from './components/profile/EditProfile'
 import Leaderboard from './components/Leaderboard';
 import LeaderProfile from './components/profile/LeaderProfile';
 import Friends from './components/profile/Friends'
+import NewSuggestion from './components/suggestions/NewSuggest'
+import AllSuggest from './components/suggestions/AllSuggest';
+import Admin from './components/auth/Admin'
 
 class App extends Component {
   constructor(props){
@@ -61,6 +63,8 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} path="/edit" component={EditProfile} getUser={this.getTheUser} />
             <ProtectedRoute user={this.state.loggedInUser} path="/leaderboard" component={Leaderboard}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/friends' component={Friends} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/suggestion' component={NewSuggestion}/>
+            <ProtectedRoute user={this.state.loggedInUser} path='/admin' component={AllSuggest} />
                         {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} /> */}
           </Switch>
           <Footer />

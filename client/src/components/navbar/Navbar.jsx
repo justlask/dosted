@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import AuthService from '../auth/AuthService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartLine, faUser } from '@fortawesome/free-solid-svg-icons'
+import Admin from '../auth/Admin'
 
 class Navbar extends Component {
   constructor(props){
@@ -24,32 +25,37 @@ class Navbar extends Component {
   }
 
   render(){
-    if(this.state.loggedInUser){
+    if(this.state.loggedInUser && this.state.loggedInUser.isAdmin){
       return(
         <nav>
             <div className="mainnav">
-              {/* <Link to="/leaderboard"><FontAwesomeIcon icon={faChartLine} /></Link> */}
               <Link to="/"><h1>DOSTED</h1></Link>
               <div>
-              {/* <Link to="/profile"><FontAwesomeIcon icon={faUser} /></Link> */}
+              <Admin loggedInUser={this.state.loggedInUser}/>
               <Link to='/'>
                 <button onClick={() => this.logoutUser()}>Logout</button>
               </Link>
               </div>
             </div>
             Welcome, {this.state.loggedInUser.username}
-            {/* <Link to='/projects' style={{ textDecoration: 'none' }}>Projects</Link> */}
 
         </nav>
       )
-    } else {
+    } 
+    else if (this.state.loggedInUser) {
+        return ( 
+          <nav className="nav-style">
+            <Link to="/"><h1>DOSTED</h1></Link>
+            <Link to='/'>
+                <button onClick={() => this.logoutUser()}>Logout</button>
+              </Link>
+          </nav>
+        )
+    }
+    else {
       return ( 
         <nav className="nav-style">
           <Link to="/"><h1>DOSTED</h1></Link>
-          {/* <ul>
-            <li><Link to='/login' style={{ textDecoration: 'none' }}>Login</Link></li>
-            <li><Link to='/signup' style={{ textDecoration: 'none' }}>Signup</Link></li>
-          </ul> */}
         </nav>
       )
     }

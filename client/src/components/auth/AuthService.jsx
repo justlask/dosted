@@ -68,26 +68,10 @@ class AuthService {
     return this.service.get('/action/random')
     .then(response => response.data)
   }
-
-
-
-
-
-
-
-  
-
   handleUpload (theFile) {
-    return this.service.post('/upload', theFile)
+    return this.service.post('/user/upload', theFile)
       .then(res => res.data)
-      .catch(errorHandler);
-  }
-
-  saveNewThing (newThing) {
-    // console.log('new thing is: ', newThing)
-    return this.service.post('/things/create', newThing)
-      .then(res => res.data)
-      .catch(errorHandler);
+      .catch(err => console.log(err));
   }
 }
 

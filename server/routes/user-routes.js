@@ -10,68 +10,33 @@ const Actions   = require('../models/actions')
 const moment = require('moment')
 
 
-// all are /user
-
-// router.post('/image-upload', isLoggedIn, (req, res, next) => {
-//  // console.log(req.files, '+++++++_', req.body)
-//  console.log('++++', req.user)
-//  uploadCloud.v2.uploader
-//    .upload(req.body.imageSrc, {
-//      resource_type: 'image',
-//    })
-
-router.put('/profile/edit/:id', uploadCloud.single('image'), (req, res, next)=>{
-  console.log(req.body)
-  console.log(req.file)
-
-  let userObj = {}
-
-
-  if (req.body.bio !== undefined) userObj.bio = req.body.bio
-
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(400).json({ message: 'Specified id is not valid' });
-    return;
-  }
-
+router.post('/upload', uploadCloud.single("image"), (req, res, next) => {
   if (!req.file) {
     next(new Error('No file uploaded!'));
     return;
   }
-  // get secure_url from the file object and save it in the 
-  // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
   res.json({ secure_url: req.file.secure_url });
-  
-  
-
-  // User.findByIdAndUpdate(req.params.id, userObj)
-  //   .then(() => {
-  //     res.json({ message: `User with ${req.params.id} is updated successfully.` });
-  //   })
-  //   .catch(err => {
-  //     res.json(err);
-  //   })
 })
 
-// username: String,
-//   bio: String,
-//   password: String,
-//   image: {type: String, default: 'https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg'},
-//   actionsCompleted: {type: Number, default: 0},
-//   currentStreak: {type: Number, default: 0},
-//   lastDayCompleted: String,
-//   friends: [ { type : Schema.Types.ObjectId, ref: 'User' } ],
-//   actions: [{type: Schema.Types.ObjectId, ref: 'Actions'}],
-//   location: {
-//     city: String,
-//     state: String
-//   },
+router.put('/profile/edit/:id', uploadCloud.single('image'), (req, res, next)=>{
+  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400).json({ message: 'Specified id is not valid' });
+    return;
+  }
+  
+
+  User.findByIdAndUpdate(req.params.id, req.body)
+    .then(() => {
+      res.json({ message: `User with ${req.params.id} is updated successfully.` });
+    })
+    .catch(err => {
+      res.json(err);
+    })
+})
 
 
 router.get('/friends/:id', (req,res,next) => {
-  console.log(req.body)
   User.findById(req.params.id).populate('friends').then(data => {
-    console.log(data)
     res.json(data)
   }).catch(err => console.log(err))
 })

@@ -8,7 +8,7 @@ export default class Footer extends Component {
   render() {
     return (
       <div>
-        <p>Made with <FontAwesomeIcon icon={faHeart} /></p>
+        <p>Made with <FontAwesomeIcon icon={faHeart} className="red"/> by <a href="http://www.justlask.com">Just Lask</a></p>
       </div>
     )
   }

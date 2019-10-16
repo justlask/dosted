@@ -44,20 +44,18 @@ router.get('/:id', (req, res, next)=>{
 
 
 //create new Actions
-router.post('/', (req, res, next)=>{
- 
-  Actions.create({
-    title: req.body.title,
-    description: req.body.description,
-    tasks: [],
-    creator: req.user._id
-  })
-    .then(response => {
-      res.json(response);
-    })
-    .catch(err => {
-      res.json(err);
-    })
+router.post('/new', (req, res, next)=>{
+  console.log(req.body)
+  // Actions.create({
+  //   title: req.body.title,
+  //   creator: req.body.userID
+  // })
+  //   .then(response => {
+  //     res.json(response);
+  //   })
+  //   .catch(err => {
+  //     res.json(err);
+  //   })
 });
 
 

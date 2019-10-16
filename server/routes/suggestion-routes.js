@@ -6,23 +6,26 @@ const Suggestions = require('../models/suggestions');
 const User    = require('../models/user-model')
 
 
-//get all suggestions
-router.get('/', (req,res,next) => {
+//create new Suggestions
+router.post('/new', (req, res, next)=>{
+  console.log(req.body)
+  Suggestions.create({
+    title: req.body.title,
+    creator: req.body.userID
+  }) .then(response => {
+    res.json({message: `your suggestion has been added for consideration to become a DOST!`})
+    })
+});
+
+
+router.get('/all', (req,res,next) => {
+  console.log(req.user)
   Suggestions.find().then(response => {
     res.json(response)
   }).catch(err => {
     res.json(err)
   })
 })
-
-
-
-router.use((req,res,next) => {
-  if (!req.user || req.user.isAdmin === false) {
-    res.status(403).json({ message: 'Unauthorized' });
-  }
-  next();
-}); 
 
 //find Suggestions by ids
 router.get('/:id', (req, res, next)=>{
@@ -42,22 +45,6 @@ router.get('/:id', (req, res, next)=>{
 })
 
 
-//create new Suggestions
-router.post('/', (req, res, next)=>{
- 
-  Suggestions.create({
-    title: req.body.title,
-    description: req.body.description,
-    tasks: [],
-    creator: req.user._id
-  })
-    .then(response => {
-      res.json(response);
-    })
-    .catch(err => {
-      res.json(err);
-    })
-});
 
 
 // PUT route => to update a specific Suggestions
@@ -78,8 +65,8 @@ router.put('/:id', (req, res, next)=>{
 
 
 // delete Suggestions by id
-router.delete('/:id', (req, res, next)=>{
-
+router.delete('/delete/:id', (req, res, next)=>{
+  console.log(req.params)
   if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
     res.status(400).json({ message: 'Specified id is not valid' });
     return;

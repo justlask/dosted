@@ -34,7 +34,7 @@ export default class Home extends Component {
     else {
       return (
         <main>
-          <Sidebar />
+          <Sidebar loggedInUser={this.props.loggedInUser}/>
           <div className="halfrow">
             <h1>
               Do<br></br>

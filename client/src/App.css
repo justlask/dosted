@@ -120,7 +120,50 @@ button {
 
 
 .thumb {
-  height: 75px;
-  border: 1px solid #000;
-  margin: 10px 5px 0 0;
+  height: 240px;
+  width: auto;
+  justify-self: center;
+  align-self: center;
+}
+
+.max-width {
+  min-width: 300px;
+  max-width: 800px;
+  width: 100%;
+}
+
+.fleximg {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.flexy {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.red {
+  color: red;
+}
+
+.star {
+  color: yellow;
+  font-size: 40px;
+}
+
+.icons {
+  justify-self: flex-end;
+  align-self: flex-end;
+  margin-right: 25px;
+}
+
+.streak {
+  color: black;
+  margin-right: -25px;
 }

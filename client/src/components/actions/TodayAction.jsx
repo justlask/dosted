@@ -53,7 +53,7 @@ export default class TodayAction extends Component {
     if (this.state.actionCompleted === false) {
       return (
         <main>
-          <Sidebar />
+          <Sidebar/>
           <div className="half">
               <div className="card text-white bg-success mb-3">
                 <div className="card-header">Today's DOST</div>
@@ -73,7 +73,7 @@ export default class TodayAction extends Component {
     else {
       return (
         <main>
-          <Sidebar />
+          <Sidebar/>
           <div className="half">
             <h1>CONGRATS!</h1>
             <h3>You've done your part!</h3>

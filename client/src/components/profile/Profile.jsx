@@ -9,17 +9,18 @@ export default class Profile extends Component {
       <main>
         <Sidebar />
         <div className="halfrow">
-          <div class="card mb-3">
-            <div class="row no-gutters">
-              <div class="col-md-4">
-                <img src={this.props.loggedInUser.image} class="card-img" alt="..." />
+          <div className="card mb-3 profileImg">
+            <div className="row no-gutters">
+              <div className="col-md-4">
+                <img src={this.props.loggedInUser.image} className="card-img" alt="..." />
               </div>
-              <div class="col-md-8">
-                <div class="card-body">
-                  <h5 class="card-title">@{this.props.loggedInUser.username}</h5>
-                  <p class="card-text">{this.props.loggedInUser.bio}</p>
-                  <p className="card-text"><small class="text-muted">Actions Completed: {this.props.loggedInUser.actionsCompleted}</small></p>
-                  <p class="card-text"><small class="text-muted">Streak: {this.props.loggedInUser.currentStreak}</small></p>
+              <div className="col-md-8">
+                <div className="card-body flexy">
+                  
+                  <h5 className="card-title">@{this.props.loggedInUser.username}</h5>
+                  <p className="card-text">{this.props.loggedInUser.bio}</p>
+                  <p className="card-text"><small className="text-muted">Actions Completed: {this.props.loggedInUser.actionsCompleted}</small></p>
+                  <p className="card-text"><small className="text-muted">Streak: {this.props.loggedInUser.currentStreak}</small></p>
                 </div>
               </div>
             </div>

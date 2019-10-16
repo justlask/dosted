@@ -9,11 +9,6 @@ class Login extends Component {
     this.service = new AuthService();
   }
 
-  componentDidMount() {
-    console.log("THIS PROPSSSS +>>>>>>>" + this.props)
-    console.log("THIS STATEEEEEE +>>>>>>>>" + this.state)
-  }
-
   handleFormSubmit = (event) => {
     event.preventDefault();
     const username = this.state.username;

@@ -8,7 +8,7 @@ const userSchema = new Schema({
   image: {type: String, default: 'https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg'},
   actionsCompleted: {type: Number, default: 0},
   currentStreak: {type: Number, default: 0},
-  lastDayCompleted: Date,
+  lastDayCompleted: Number,
   friends: [ { type : Schema.Types.ObjectId, ref: 'User' } ],
   actions: [{type: Schema.Types.ObjectId, ref: 'Actions'}],
   location: {

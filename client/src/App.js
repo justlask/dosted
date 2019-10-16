@@ -14,11 +14,11 @@ import TodayAction from './components/actions/TodayAction'
 import Profile from './components/profile/Profile'
 import EditProfile from './components/profile/EditProfile'
 import Leaderboard from './components/Leaderboard';
-import LeaderProfile from './components/profile/LeaderProfile';
 import Friends from './components/profile/Friends'
 import NewSuggestion from './components/suggestions/NewSuggest'
 import AllSuggest from './components/suggestions/AllSuggest';
 import Admin from './components/auth/Admin'
+import FriendProfile from './components/profile/FriendProfile';
 
 class App extends Component {
   constructor(props){
@@ -57,7 +57,7 @@ class App extends Component {
           <Switch>
             <Route exact path='/' render={() => <Home user={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/actions' component={AllActions} />
-            <ProtectedRoute user={this.state.loggedInUser} path='/profile/:id' component={LeaderProfile} />
+            <ProtectedRoute user={this.state.loggedInUser} path='/profile/:id' component={FriendProfile} />
             <ProtectedRoute user={this.state.loggedInUser} path="/profile" component={Profile} />
             <ProtectedRoute user={this.state.loggedInUser} path='/action' component={TodayAction} />
             <ProtectedRoute user={this.state.loggedInUser} path="/edit" component={EditProfile} getUser={this.getTheUser} />

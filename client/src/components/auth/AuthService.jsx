@@ -73,6 +73,11 @@ class AuthService {
       .then(res => res.data)
       .catch(err => console.log(err));
   }
+  getFriend(friendID) {
+    return this.service.get(`/user/profile/${friendID}`)
+    .then(res => res.data)
+    .catch(err => console.log(err))
+  }
 }
 
 export default AuthService;

@@ -24,7 +24,6 @@ router.put('/profile/edit/:id', uploadCloud.single('image'), (req, res, next)=>{
     return;
   }
   
-
   User.findByIdAndUpdate(req.params.id, req.body)
     .then(() => {
       res.json({ message: `User with ${req.params.id} is updated successfully.` });
@@ -33,7 +32,6 @@ router.put('/profile/edit/:id', uploadCloud.single('image'), (req, res, next)=>{
       res.json(err);
     })
 })
-
 
 router.get('/friends/:id', (req,res,next) => {
   User.findById(req.params.id).populate('friends').then(data => {
@@ -62,8 +60,6 @@ router.put('/unfollow', (req,res,next) => {
   }).catch(err => console.log(err))
 })
 
-
-
 router.put('/completed', (req,res,next) => {
 
   User.findById(req.body.userID).then(data => {
@@ -84,7 +80,6 @@ router.put('/completed', (req,res,next) => {
     .catch(err => console.log(err))
   }).catch(err => console.log(err))
 
-
   Actions.findById(req.body.actionID).then(data => {
 
     //finds the action and updates the action accordingly
@@ -98,13 +93,14 @@ router.put('/completed', (req,res,next) => {
   }).catch(err => console.log(err))
 })
 
-
-
-
 router.get('/leaderboard', (req,res,next) => {
   User.find().sort({currentStreak: -1, actionsCompleted: -1}).then(data => {
     res.json(data)
   }).catch(err => console.log(err))
+})
+
+router.get('/profile/:id', (req,res,next) => {
+  User.findById(req.params.id).then(data => { res.json(data)}).catch(err => console.log(err))
 })
 
 

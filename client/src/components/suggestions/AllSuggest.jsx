@@ -12,7 +12,7 @@ export default class AllSuggest extends Component {
   checkAdmin = () => {
     let user = this.props.loggedInUser
     if (this.props.loggedInUser.isAdmin) {
-      axios.get('http://localhost:5000/api/suggestions/all', {user})
+      axios.get('/api/suggestions/all', {user})
       .then(response => {
         this.setState({
           suggestions: response.data

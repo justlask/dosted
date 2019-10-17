@@ -21,7 +21,7 @@ export default class Friends extends Component {
   //   }))
   // }
   componentDidMount(){
-    axios.get(`http://localhost:5000/api/user/friends/${this.props.loggedInUser._id}`).then(response => {
+    axios.get(`/api/user/friends/${this.props.loggedInUser._id}`).then(response => {
       this.setState({
         friends: response.data.friends
       })

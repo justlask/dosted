@@ -20,7 +20,7 @@ export default class EditProfile extends Component {
     const bio = this.state.bio;
     event.preventDefault()
 
-    axios.put(`http://localhost:5000/api/user/profile/edit/${this.props.loggedInUser._id}`, { bio, image }, {withCredentials:true})
+    axios.put(`/api/user/profile/edit/${this.props.loggedInUser._id}`, { bio, image }, {withCredentials:true})
     .then( () => {
         this.setState({
           bio: this.state.bio,

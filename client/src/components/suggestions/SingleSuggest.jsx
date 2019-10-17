@@ -22,7 +22,7 @@ export default class SingleSuggest extends Component {
   }
 
   deleteDOST(e) {
-    axios.delete(`http://localhost:5000/api/suggestions/delete/${this.props.suggest._id}`)
+    axios.delete(`/api/suggestions/delete/${this.props.suggest._id}`)
     .then(response => {
       this.setState({
         deleted: true
@@ -35,13 +35,13 @@ export default class SingleSuggest extends Component {
       title: this.props.suggest.title,
       creator: this.props.suggest.creator
     }
-    axios.post('http://localhost:5000/api/action/new', newDOST)
+    axios.post('/api/action/new', newDOST)
     .then(response => {
       this.setState({
         added: true
       })
     })
-    axios.delete(`http://localhost:5000/api/suggestions/delete/${this.props.suggest._id}`)
+    axios.delete(`/api/suggestions/delete/${this.props.suggest._id}`)
     .then(response => {
       this.setState({
         added: false

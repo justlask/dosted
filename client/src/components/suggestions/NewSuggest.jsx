@@ -12,7 +12,7 @@ export default class NewSuggest extends Component {
     e.preventDefault();
     let title = this.state.title
     let userID = this.props.loggedInUser
-    axios.post('http://localhost:5000/api/suggestions/new', {userID, title})
+    axios.post('/api/suggestions/new', {userID, title})
     .then(response => {
     }).catch(err => console.log(err))
   }

@@ -9,7 +9,7 @@ export default class Leaderboard extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://localhost:5000/api/user/leaderboard').then(response => {
+    axios.get('/api/user/leaderboard').then(response => {
       this.setState({
         leaderboard: response.data
       })

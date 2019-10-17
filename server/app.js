@@ -53,10 +53,12 @@ app.use(require('node-sass-middleware')({
 }));
       
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'hbs');
+// app.use(express.static(path.join(__dirname, 'public')));
+ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+
+ app.use(express.static(path.join(__dirname, '../client/build')))
 
 // ADD SESSION SETTINGS HERE:
 app.use(session({
@@ -90,5 +92,10 @@ app.use('/api/auth', require('./routes/auth-routes'))
 app.use('/api/action', require('./routes/action-routes'))
 app.use('/api/suggestions', require('./routes/suggestion-routes'))
 app.use('/api/user', require('./routes/user-routes'))
+
+// For any other routes, redirect to the index.html file of React
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'))
+})
 
 module.exports = app;

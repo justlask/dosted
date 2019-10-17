@@ -67,12 +67,20 @@ router.put('/completed', (req,res,next) => {
     var now = moment().unix();
     let updateObj = {
       $push: {actions: req.body.actionID},
-      lastDayCompleted: moment().unix()
     };
-    if (data.lastDayCompleted === undefined) updateObj.currentStreak = 1
-    if ((now - data.lastDayCompleted) > 86400000 && (now - data.lastDayCompleted) < 172800000) updateObj.currentStreak = data.currentStreak +1
-    if ((now - data.lastDayCompleted) > 172800000) updateObj.currentStreak = 0
-    updateObj.actionsCompleted = data.actionsCompleted + 1
+    if (data.lastDayCompleted === undefined) {
+      updateObj.lastDayCompleted = moment().unix()
+      updateObj.currentStreak = 1
+    }
+    if ((now - data.lastDayCompleted) > 86400000 && (now - data.lastDayCompleted) < 172800000) {
+      updateObj.lastDayCompleted = moment().unix()
+      updateObj.currentStreak = data.currentStreak +1
+    }
+    if ((now - data.lastDayCompleted) > 172800000) {
+      updateObj.currentStreak = 0
+      updateObj.lastDayCompleted = moment().unix()
+      updateObj.actionsCompleted = data.actionsCompleted + 1
+    }
 
     //update user for doing action
     User.findByIdAndUpdate(data._id, updateObj)

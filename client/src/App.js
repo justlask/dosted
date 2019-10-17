@@ -17,7 +17,6 @@ import Leaderboard from './components/Leaderboard';
 import Friends from './components/profile/Friends'
 import NewSuggestion from './components/suggestions/NewSuggest'
 import AllSuggest from './components/suggestions/AllSuggest';
-import Admin from './components/auth/Admin'
 import FriendProfile from './components/profile/FriendProfile';
 
 class App extends Component {

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import UserCard from '../components/profile/UserCard'
 import Sidebar from '../components/Sidebar'
+import serverUrl from '../configServer'
 
 export default class Leaderboard extends Component {
   state = {
@@ -9,7 +10,7 @@ export default class Leaderboard extends Component {
   }
 
   componentDidMount(){
-    axios.get('/api/user/leaderboard').then(response => {
+    axios.get(`${serverUrl}/user/leaderboard`).then(response => {
       this.setState({
         leaderboard: response.data
       })

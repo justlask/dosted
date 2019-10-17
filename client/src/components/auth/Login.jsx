@@ -15,7 +15,6 @@ class Login extends Component {
     const password = this.state.password;
     this.service.login(username, password)
     .then( response => {
-        console.log(response)
         this.setState({ username: "", password: "" });
         this.props.getUser(response)
         this.props.history.push('/action')
@@ -32,7 +31,6 @@ class Login extends Component {
 
 
   render(){
-    console.log(this.state)
     if(this.state.loggedInUser){
       return(
         <Redirect to="/actions" />

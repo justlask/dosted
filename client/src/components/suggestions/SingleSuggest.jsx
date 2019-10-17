@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import AuthService from '../auth/AuthService'
 import Button from '../Button'
 import axios from 'axios'
+import serverUrl from '../../configServer'
+
 
 export default class SingleSuggest extends Component {
   state = {
@@ -22,7 +24,7 @@ export default class SingleSuggest extends Component {
   }
 
   deleteDOST(e) {
-    axios.delete(`/api/suggestions/delete/${this.props.suggest._id}`)
+    axios.delete(`${serverUrl}/suggestions/delete/${this.props.suggest._id}`)
     .then(response => {
       this.setState({
         deleted: true
@@ -35,13 +37,13 @@ export default class SingleSuggest extends Component {
       title: this.props.suggest.title,
       creator: this.props.suggest.creator
     }
-    axios.post('/api/action/new', newDOST)
+    axios.post(`${serverUrl}/action/new`, newDOST)
     .then(response => {
       this.setState({
         added: true
       })
     })
-    axios.delete(`/api/suggestions/delete/${this.props.suggest._id}`)
+    axios.delete(`${serverUrl}/suggestions/delete/${this.props.suggest._id}`)
     .then(response => {
       this.setState({
         added: false

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Sidebar from '../Sidebar'
 import axios from 'axios'
+import serverUrl from '../../configServer'
 
 
 export default class NewSuggest extends Component {
@@ -12,7 +13,7 @@ export default class NewSuggest extends Component {
     e.preventDefault();
     let title = this.state.title
     let userID = this.props.loggedInUser
-    axios.post('/api/suggestions/new', {userID, title})
+    axios.post(`${serverUrl}/suggestions/new`, {userID, title})
     .then(response => {
     }).catch(err => console.log(err))
   }

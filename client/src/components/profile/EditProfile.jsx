@@ -4,6 +4,7 @@ import axios from 'axios'
 import Button from '../Button'
 import AuthService from '../auth/AuthService'
 import Sidebar from '../Sidebar'
+import serverUrl from '../../configServer'
 
 export default class EditProfile extends Component {
   constructor(props){
@@ -20,7 +21,7 @@ export default class EditProfile extends Component {
     const bio = this.state.bio;
     event.preventDefault()
 
-    axios.put(`/api/user/profile/edit/${this.props.loggedInUser._id}`, { bio, image }, {withCredentials:true})
+    axios.put(`${serverUrl}/user/profile/edit/${this.props.loggedInUser._id}`, { bio, image }, {withCredentials:true})
     .then( () => {
         this.setState({
           bio: this.state.bio,
@@ -30,6 +31,7 @@ export default class EditProfile extends Component {
     })
     .catch( error => console.log(error) )
   }
+
   handleChangeBio = (event) => {  
     this.setState({
       bio:event.target.value

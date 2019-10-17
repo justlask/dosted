@@ -3,6 +3,7 @@ import NewSuggest from '../suggestions/NewSuggest'
 import Sidebar from '../Sidebar'
 import axios from 'axios'
 import SingleSuggest from '../suggestions/SingleSuggest'
+import serverUrl from '../../configServer'
 
 export default class AllSuggest extends Component {
   state = {
@@ -12,7 +13,7 @@ export default class AllSuggest extends Component {
   checkAdmin = () => {
     let user = this.props.loggedInUser
     if (this.props.loggedInUser.isAdmin) {
-      axios.get('/api/suggestions/all', {user})
+      axios.get(`${serverUrl}/suggestions/all`, {user})
       .then(response => {
         this.setState({
           suggestions: response.data

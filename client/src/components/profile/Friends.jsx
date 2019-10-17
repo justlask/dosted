@@ -3,6 +3,7 @@ import AuthService from '../auth/AuthService'
 import UserCard from '../profile/UserCard'
 import Sidebar from '../Sidebar'
 import axios from 'axios'
+import serverUrl from '../../configServer'
 
 
 export default class Friends extends Component {
@@ -14,14 +15,8 @@ export default class Friends extends Component {
     this.service = new AuthService();
   }
 
-  // componentDidMount() {
-  //   this.service.findFriends(this.props.loggedInUser._id)
-  //   .then(data => this.setState({
-  //     friends: data
-  //   }))
-  // }
   componentDidMount(){
-    axios.get(`/api/user/friends/${this.props.loggedInUser._id}`).then(response => {
+    axios.get(`${serverUrl}/user/friends/${this.props.loggedInUser._id}`).then(response => {
       this.setState({
         friends: response.data.friends
       })

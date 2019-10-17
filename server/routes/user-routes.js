@@ -67,18 +67,27 @@ router.put('/completed', (req,res,next) => {
     var now = moment().unix();
     let updateObj = {
       $push: {actions: req.body.actionID},
-    };
+    }
+    console.log('this is the start')
     if (data.lastDayCompleted === undefined) {
+      console.log(' =>>>>>>>>>>> first time completing')
       updateObj.lastDayCompleted = moment().unix()
       updateObj.currentStreak = 1
     }
-    if ((now - data.lastDayCompleted) > 86400000 && (now - data.lastDayCompleted) < 172800000) {
+    else if ((now - data.lastDayCompleted) > 86400000 && (now - data.lastDayCompleted) < 172800000) {
+      console.log(' =>>>>>>>>>>> completed more than a day ago')
       updateObj.lastDayCompleted = moment().unix()
+      updateObj.actionsCompleted = data.actionsCompleted + 1
       updateObj.currentStreak = data.currentStreak +1
     }
-    if ((now - data.lastDayCompleted) > 172800000) {
+    else if ((now - data.lastDayCompleted) > 172800000) {
+      console.log(' =>>>>>>>>>>> completed more than 2 days ago')
       updateObj.currentStreak = 0
       updateObj.lastDayCompleted = moment().unix()
+      updateObj.actionsCompleted = data.actionsCompleted + 1
+    }
+    else {
+      console.log(' =>>>>>>>>>>> in between today and tomorrow')
       updateObj.actionsCompleted = data.actionsCompleted + 1
     }
 
@@ -88,17 +97,17 @@ router.put('/completed', (req,res,next) => {
     .catch(err => console.log(err))
   }).catch(err => console.log(err))
 
-  Actions.findById(req.body.actionID).then(data => {
+  // Actions.findById(req.body.actionID).then(data => {
 
-    //finds the action and updates the action accordingly
-    let updateObj = {};
-    updateObj.timesCompleted = data.timesCompleted + 1
+  //   //finds the action and updates the action accordingly
+  //   let updateObj = {};
+  //   updateObj.timesCompleted = data.timesCompleted + 1
 
-    //actually updates the action
-    Actions.findByIdAndUpdate(data._id, updateObj)
-    .then(data => { res.json(data)})
-    .catch(err => console.log(err))
-  }).catch(err => console.log(err))
+  //   //actually updates the action
+  //   Actions.findByIdAndUpdate(data._id, updateObj)
+  //   .then(data => { res.json(data)})
+  //   .catch(err => console.log(err))
+  // }).catch(err => console.log(err))
 })
 
 router.get('/leaderboard', (req,res,next) => {

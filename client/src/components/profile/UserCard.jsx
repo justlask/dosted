@@ -16,17 +16,7 @@ export default class UserCard extends Component {
     let friendID = this.props.leader._id
     this.service.follow(userID, friendID)
     .then(response => {
-
-
-
       //need to refresh this card to show unfollow!!!
-
-
-
-
-
-
-
     }).catch(err => console.log(err))
   }
 
@@ -39,19 +29,12 @@ export default class UserCard extends Component {
     let friendID = this.props.leader._id
     this.service.unfollow(userID, friendID)
     .then(response => {
-
-
-
       //need to refresh this card to show unfollow!!!
-
-
-
-
-
-
-
     }).catch(err => console.log(err))
   }
+
+
+
   handleButton(){
     if (this.props.loggedInUser._id === this.props.leader._id) {
       return

@@ -7,7 +7,9 @@ const uploadCloud = require('../configs/cloudinary');
 // require the user model !!!!
 const User       = require('../models/user-model');
 const Actions   = require('../models/actions')
+const Locations = require('../models/locations')
 const moment = require('moment')
+const axios = require('axios')
 
 
 router.post('/upload', uploadCloud.single("image"), (req, res, next) => {
@@ -61,6 +63,7 @@ router.put('/unfollow', (req,res,next) => {
 })
 
 router.put('/completed', (req,res,next) => {
+  console.log(req.ip)
 
   User.findById(req.body.userID).then(data => {
     //finds the user and does some time checks and updates user accordingly
@@ -97,17 +100,26 @@ router.put('/completed', (req,res,next) => {
     .catch(err => console.log(err))
   }).catch(err => console.log(err))
 
-  // Actions.findById(req.body.actionID).then(data => {
+  Actions.findById(req.body.actionID).then(data => {
+    //finds the action and updates the action accordingly
+    let updateObj = {};
+    updateObj.timesCompleted = data.timesCompleted + 1
 
-  //   //finds the action and updates the action accordingly
-  //   let updateObj = {};
-  //   updateObj.timesCompleted = data.timesCompleted + 1
+    //actually updates the action
+    Actions.findByIdAndUpdate(data._id, updateObj)
+    .then()
+    .catch(err => console.log(err))
+  }).catch(err => console.log(err))
 
-  //   //actually updates the action
-  //   Actions.findByIdAndUpdate(data._id, updateObj)
-  //   .then(data => { res.json(data)})
-  //   .catch(err => console.log(err))
-  // }).catch(err => console.log(err))
+  // get ip address
+  // 
+  axios.get(`http://api.ipstack.com/${req.ip}?access_key=73c433d44b1edd11638377b796be6f74&format=1`)
+  .then(data => {
+    let latitude = data.data.latitude
+    let longitude = data.data.longitude
+    Locations.create({lat : latitude, long: longitude}).then(()=>{}).catch(err => next(err))
+  }).catch(err => console.log(err))
+
 })
 
 router.get('/leaderboard', (req,res,next) => {

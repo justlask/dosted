@@ -113,7 +113,10 @@ router.put('/completed', (req,res,next) => {
 
   // get ip address
   // 
-  axios.get(`http://api.ipstack.com/${req.ip}?access_key=73c433d44b1edd11638377b796be6f74&format=1`)
+
+  var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
+  console.log(ip)
+  axios.get(`http://api.ipstack.com/${ip}?access_key=73c433d44b1edd11638377b796be6f74&format=1`)
   .then(data => {
     console.log(data.data)
     let latitude = data.data.latitude

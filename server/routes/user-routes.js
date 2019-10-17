@@ -118,10 +118,15 @@ router.put('/completed', (req,res,next) => {
   console.log(ip)
   axios.get(`http://api.ipstack.com/${ip}?access_key=73c433d44b1edd11638377b796be6f74&format=1`)
   .then(data => {
-    console.log(data.data)
     let latitude = data.data.latitude
     let longitude = data.data.longitude
-    Locations.create({lat : latitude, long: longitude}).then(()=>{}).catch(err => next(err))
+
+    if (latitude === null || longitude === null) {
+      return
+    }
+    else {
+      Locations.create({lat : latitude, long: longitude}).then(()=>{}).catch(err => next(err))
+    }
   }).catch(err => console.log(err))
 
 })

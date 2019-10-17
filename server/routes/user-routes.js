@@ -128,7 +128,6 @@ router.put('/completed', (req,res,next) => {
       Locations.create({lat : latitude, long: longitude}).then(()=>{}).catch(err => next(err))
     }
   }).catch(err => console.log(err))
-
 })
 
 router.get('/leaderboard', (req,res,next) => {

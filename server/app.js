@@ -92,6 +92,7 @@ app.use('/api/auth', require('./routes/auth-routes'))
 app.use('/api/action', require('./routes/action-routes'))
 app.use('/api/suggestions', require('./routes/suggestion-routes'))
 app.use('/api/user', require('./routes/user-routes'))
+app.use('/api/map', require('./routes/map-routes'))
 
 // For any other routes, redirect to the index.html file of React
 app.get('*', (req, res) => {

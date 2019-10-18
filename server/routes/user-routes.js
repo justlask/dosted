@@ -36,7 +36,7 @@ router.put('/profile/edit/:id', uploadCloud.single('image'), (req, res, next)=>{
 })
 
 router.get('/friends/:id', (req,res,next) => {
-  User.findById(req.params.id).populate('friends').then(data => {
+  User.findById(req.params.id).populate('friends').populate('actions').then(data => {
     res.json(data)
   }).catch(err => console.log(err))
 })
@@ -135,7 +135,7 @@ router.get('/leaderboard', (req,res,next) => {
 })
 
 router.get('/profile/:id', (req,res,next) => {
-  User.findById(req.params.id).then(data => { res.json(data)}).catch(err => console.log(err))
+  User.findById(req.params.id).populate('actions').then(data => { res.json(data)}).catch(err => console.log(err))
 })
 
 

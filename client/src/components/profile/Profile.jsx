@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Button from '../Button'
 import Sidebar from '../Sidebar'
 import AuthService from '../auth/AuthService'
+import Axios from 'axios'
 
 export default class Profile extends Component {
   constructor(props){
@@ -32,6 +33,13 @@ export default class Profile extends Component {
     })
   }
 
+  getActions = () => {
+    console.log(this.state.loggedInUser.actions)
+    return this.state.loggedInUser.actions.map(action => {
+      return <div>{action.title}</div>
+    })
+  }
+
   render() {
     return (
       <main>
@@ -52,6 +60,13 @@ export default class Profile extends Component {
               </div>
             </div>
           </div>
+          <div>
+            <h2>Actions Completed:</h2>
+            {this.getActions()}
+          </div>
+
+
+
           <Button link="edit" name="Edit Profile" pleaseChange={this.pleaseChange}/>
         </div>
       </main>

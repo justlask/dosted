@@ -113,7 +113,7 @@ authRoutes.get('/loggedin', (req, res, next) => {
 });
 
 authRoutes.get('/profile', (req,res,next) => {
-    User.findById(req.user.id).then(data => {
+    User.findById(req.user.id).populate('actions').then(data => {
         res.json(data)
     }).catch(err => next(err))
 })

@@ -19,7 +19,22 @@ export default class FriendProfile extends Component {
       })
       )
     .catch(err => console.log(err))
+
   }
+
+  getActions = () => {
+    console.log(this.state.friend.actions)
+    if (this.state.friend.actions === undefined) {
+      return <div>...loading</div>
+    }
+    else {
+      return this.state.friend.actions.map(action => {
+        return <div>{action.title}</div>
+      })
+    }
+  }
+
+
   render() {
     return (
       <main>
@@ -39,6 +54,10 @@ export default class FriendProfile extends Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div>
+            <h3>Actions Completed:</h3>
+            {this.getActions()}
           </div>
         </div>
       </main>

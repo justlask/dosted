@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import Button from '../Button'
-import Sidebar from '../Sidebar'
 
 export default class TodayAction extends Component {
   state = {
@@ -49,16 +48,14 @@ export default class TodayAction extends Component {
   
 
   render() {
-
     if (this.state.actionCompleted === false) {
       return (
         <main>
-          <Sidebar/>
-          <div className="card text-white bg-success mb-3">
-            <div className="card-header">Today's DOST</div>
-            <div className="card-body">
-              <p className="card-text">{this.state.action.title}</p>
-              <p className="card-text small">This task has been completed {this.state.action.timesCompleted} times</p>
+          <div className="card text-white action">
+            <div className="card-header action">Today's DOST</div>
+            <div className="card-body action">
+              <p className="card-text action">{this.state.action.title}</p>
+              <p className="card-text action small">This task has been completed {this.state.action.timesCompleted} times</p>
             </div>
             <div className="buttons">
               <Button onClick={() => {this.handleCompleted()}} name={<FontAwesomeIcon icon={faCheck} />}/>
@@ -71,7 +68,6 @@ export default class TodayAction extends Component {
     else {
       return (
         <main>
-          <Sidebar/>
           <div className="half">
             <h1>CONGRATS!</h1>
             <h3>You've done your part!</h3>

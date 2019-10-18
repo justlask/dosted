@@ -7,7 +7,6 @@ export default class Profile extends Component {
   render() {
     return (
       <main>
-        <Sidebar />
         <div className="halfrow">
           <div className="card mb-3 profileImg">
             <div className="row no-gutters">

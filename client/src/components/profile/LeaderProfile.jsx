@@ -26,7 +26,6 @@ export default class LeaderProfile extends Component {
   render() {
     return (
       <main>
-        <Sidebar />
        {console.log(this.state.friend)}
       </main>
     )

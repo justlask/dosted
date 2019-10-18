@@ -27,7 +27,6 @@ export default class NewSuggest extends Component {
   render() {
     return (
       <main>
-        <Sidebar />
         <div className="half">
         <p>MAKE A SUGGESTION FOR A DOST</p>
         <form onSubmit={(e) => this.handleSuggestSubmit(e)}>

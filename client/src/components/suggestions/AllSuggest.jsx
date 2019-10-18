@@ -41,10 +41,7 @@ export default class AllSuggest extends Component {
     if (this.props.loggedInUser.isAdmin) {
       return (
         <main>
-          <Sidebar />
-          <div className="half">
           {this.renderSuggests()}
-          </div>
         </main>
       )
     }

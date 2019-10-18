@@ -7,9 +7,9 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 export default class Footer extends Component {
   render() {
     return (
-      <div>
+      <footer>
         <p>Made with <FontAwesomeIcon icon={faHeart} className="red"/> by <a href="http://www.justlask.com">Just Lask</a></p>
-      </div>
+      </footer>
     )
   }
 }

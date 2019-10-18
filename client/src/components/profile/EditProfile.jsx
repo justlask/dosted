@@ -66,7 +66,6 @@ handleFileUpload = e => {
   render() {
     return (
       <main>
-        <Sidebar />
         <form onSubmit={this.handleFormSubmit} enctype="multipart/form-data">
           <p>THIS IS WHERE YOU EDIT YOUR PROFILE</p>
           <label for="photo"><b>profile picture</b></label>

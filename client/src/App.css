@@ -3,12 +3,13 @@
 /* Welcome, {this.state.loggedInUser.username} */
 * {
   font-family: 'Poppins';
-  color: #1d617a;
+  font-weight: 500;
 }
 
 /* img {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 } */
+
 .App {
   font-family: 'Poppins';
   text-align: center;
@@ -77,16 +78,26 @@ nav {
   font-size: 80px;
 }
 
+footer {
+  padding: 25px;
+}
 .sidebar {
-  width: 80vw;
+  width: 100vw;
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 25px;
 }
 
+.action {
+  background-color: #1d617a;
+  color: white;
+  min-width: 300px;
+  padding: 10px 20px;
+}
+
 main {
-  min-height: 75vh;
+  min-height: 60vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -94,23 +105,11 @@ main {
   align-items: center;
 }
 
-button {
-  color: #61c2a2;
-  font-weight: 500;
-  font-size: 20px;
-  border-radius: 6px;
-  margin: 0px 10px;
-  padding: 5px 10px;
-}
-
-button:hover {
-  color: #1d617a;
-}
-
 .buttons {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #61c2a2;
 }
 
 
@@ -118,9 +117,23 @@ button:hover {
   height: 400px;
 }
 
+.card {
+  color: #1d617a;
+}
+
 .titleName {
   text-align: left;
   margin-bottom: 50px;
+}
+
+.dostedtitle {
+  color: #1d617a;
+}
+
+.firsty {
+  font-size: 50px;
+  font-weight: 700;
+  color: #1d617a;
 }
 
 
@@ -163,6 +176,13 @@ button:hover {
 .submitbtn {
   justify-self: flex-end;
   align-self: flex-end;
+}
+
+.suggest {
+    margin: 10px;  
+    background: #bed9d1;
+    border: 2px solid #1d617a;
+    border-radius: 16px;
 }
 
 .signup-login {
@@ -210,11 +230,6 @@ button:hover {
   margin-right: 25px;
 }
 
-.streak {
-  color: black;
-  margin-right: -25px;
-}
-
 .map {
   height: 600px;
   width: 100vw;
@@ -236,4 +251,23 @@ button:hover {
 .star {
   color: yellow;
   font-size: 40px;
+}
+
+button {
+  color: #61c2a2;
+  font-weight: 500;
+  font-size: 20px;
+  border-radius: 6px;
+  margin: 0px 10px;
+  padding: 5px 10px;
+}
+
+button:hover {
+  color: #1d617a;
+}
+
+.streak {
+  color: black;
+  margin-right: -25px;
+  z-index: 5;
 }

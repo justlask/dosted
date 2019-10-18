@@ -15,13 +15,13 @@ export default class Home extends Component {
       return (
         <div className="flexcolfull">
           <div className="titleName">
-            <h1>
-              Do<br></br>
-              One<br></br>
-              Small<br></br>
-              Thing<br></br>
-              Every<br></br>
-              Day<br></br>
+            <h1 className="dostedtitle">
+              <span className="firsty">D</span>o<br></br>
+              <span className="firsty">O</span>ne<br></br>
+              <span className="firsty">S</span>mall<br></br>
+              <span className="firsty">T</span>hing<br></br>
+              <span className="firsty">E</span>very<br></br>
+              <span className="firsty">D</span>ay<br></br>
             </h1>
           </div>
           <div className="buttons">
@@ -34,7 +34,6 @@ export default class Home extends Component {
     else {
       return (
         <main>
-          <Sidebar loggedInUser={this.props.loggedInUser}/>
           <div className="titleName">
             <h1>
               Do<br></br>

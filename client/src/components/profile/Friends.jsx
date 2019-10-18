@@ -26,7 +26,6 @@ export default class Friends extends Component {
   render() {
     return (
       <main>
-        <Sidebar />
         <div className="halfrow">
         {this.state.friends.map((friend, i) => {
           return <UserCard loggedInUser={this.props.loggedInUser} key={i} leader={friend}/>

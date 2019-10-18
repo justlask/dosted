@@ -23,7 +23,6 @@ export default class FriendProfile extends Component {
   render() {
     return (
       <main>
-        <Sidebar />
         <div className="halfrow">
           <div className="card mb-3 profileImg">
             <div className="row no-gutters">
@@ -41,7 +40,6 @@ export default class FriendProfile extends Component {
               </div>
             </div>
           </div>
-          <Button link="edit" name="Edit Profile"/>
         </div>
       </main>
     )

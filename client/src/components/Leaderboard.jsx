@@ -28,7 +28,6 @@ export default class Leaderboard extends Component {
   render() {
     return (
       <main>
-        <Sidebar />
         <div className="halfrow">
         {this.state.leaderboard.map((leader, i) => {
           console.log(i, this.state.loggedInUser.friends)

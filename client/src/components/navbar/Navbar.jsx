@@ -4,6 +4,7 @@ import AuthService from '../auth/AuthService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartLine, faUser } from '@fortawesome/free-solid-svg-icons'
 import Admin from '../auth/Admin'
+import Sidebar from '../Sidebar'
 
 class Navbar extends Component {
   constructor(props){
@@ -37,17 +38,21 @@ class Navbar extends Component {
               </Link>
               </div>
             </div>
+            <Sidebar />
         </nav>
       )
     } 
     else if (this.state.loggedInUser) {
         return ( 
-          <nav className="mainnav">
+          <nav>
+            <div className="mainnav">
             <div></div>
             <Link to="/"><h1 className="bold">DOSTED</h1></Link>
             <Link to='/'>
                 <button onClick={() => this.logoutUser()}>Logout</button>
               </Link>
+            </div>
+          <Sidebar />
           </nav>
         )
     }

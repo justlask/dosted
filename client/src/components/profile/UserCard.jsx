@@ -16,34 +16,35 @@ export default class UserCard extends Component {
     let friendID = this.props.leader._id
     this.service.follow(userID, friendID)
     .then(response => {
+      console.log(response)
       //need to refresh this card to show unfollow!!!
+      this.props.pleaseChange(response)
     }).catch(err => console.log(err))
   }
-
-
-
-
 
   removeFriend(e) {
     let userID = this.props.loggedInUser._id
     let friendID = this.props.leader._id
     this.service.unfollow(userID, friendID)
     .then(response => {
+      console.log(response)
+      this.props.pleaseChange(response)
       //need to refresh this card to show unfollow!!!
     }).catch(err => console.log(err))
   }
 
 
-
-  handleButton(){
+  handleButton = () => {
+    console.log(this.props)
+    // return <Button onClick={this.toggleFriend} name="Follow" />
     if (this.props.loggedInUser._id === this.props.leader._id) {
       return
     }
     if (this.props.loggedInUser.friends.includes(this.props.leader._id)) {
-      return <Button onClick={() => this.removeFriend()} name="unfollow" />
+      return <Button onClick={(e) => this.removeFriend(e)} name="unfollow" />
     }
     else {
-      return <Button onClick={() => this.addFriend()} name="follow" />
+      return <Button onClick={(e) => this.addFriend(e)} name="follow" />
     }
   }
 

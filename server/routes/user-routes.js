@@ -45,7 +45,7 @@ router.put('/follow', (req,res,next) => {
   //add person to following
   let userID = req.body.userID
   let friendID = req.body.friendID
-  User.findByIdAndUpdate(userID, {$push: {friends: friendID}})
+  User.findByIdAndUpdate(userID, {$push: {friends: friendID}}, {new:true})
   .then(data => {
     res.json(data)
   }).catch(err => console.log(err))
@@ -56,7 +56,7 @@ router.put('/unfollow', (req,res,next) => {
   let userID = req.body.userID
   let friendID = req.body.friendID
   console.log("unfollow " + req.body)
-  User.findByIdAndUpdate(userID, {$pull: {friends: friendID}})
+  User.findByIdAndUpdate(userID, {$pull: {friends: friendID}}, {new:true})
   .then(data => {
     res.json(data)
   }).catch(err => console.log(err))

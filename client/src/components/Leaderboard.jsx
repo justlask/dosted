@@ -6,7 +6,9 @@ import serverUrl from '../configServer'
 
 export default class Leaderboard extends Component {
   state = {
-    leaderboard: []
+    leaderboard: [],
+    change: false,
+    loggedInUser: this.props.loggedInUser
   }
 
   componentDidMount(){
@@ -16,13 +18,23 @@ export default class Leaderboard extends Component {
       })
     })
   }
+
+  pleaseChange = (newUser) => {
+    console.log(newUser, '[][][][')
+    this.setState({
+      change: !this.state.change,
+      loggedInUser: newUser
+    })
+  }
+
   render() {
     return (
       <main>
         <Sidebar />
         <div className="halfrow">
         {this.state.leaderboard.map((leader, i) => {
-          return <UserCard loggedInUser={this.props.loggedInUser} key={i} leader={leader}/>
+          console.log(i, this.state.loggedInUser.friends)
+          return <UserCard loggedInUser={this.state.loggedInUser} key={i} leader={leader} pleaseChange={this.pleaseChange} changed={this.state.change}/>
         })}
         </div>
       </main>

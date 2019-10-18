@@ -18,6 +18,7 @@ import Friends from './components/profile/Friends'
 import NewSuggestion from './components/suggestions/NewSuggest'
 import AllSuggest from './components/suggestions/AllSuggest';
 import FriendProfile from './components/profile/FriendProfile';
+import Map from './components/Map'
 
 class App extends Component {
   constructor(props){
@@ -74,6 +75,7 @@ class App extends Component {
         <div className="App">
           <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
             <Switch> 
+              <Route path='/map' render={() => <Map />} />
               <Route exact path='/' render={() => <Home getUser={this.getTheUser}/>}/>
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
               <Route exact path='/login' render={(props) => <Login user={this.state.loggedInUser} {...props} getUser={this.getTheUser}/>}/>

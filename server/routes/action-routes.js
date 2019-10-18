@@ -19,6 +19,7 @@ router.get('/', (req,res,next) => {
 router.get('/random', (req,res,next) => {
   Actions.find().then(response => {
     let random = response[Math.floor(Math.random()*response.length)]
+    
     res.json(random)
   }).catch(err => {
     res.json(err)

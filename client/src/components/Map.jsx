@@ -15,20 +15,32 @@ class Map extends Component {
 
 
     componentDidMount() {
-        axios.get(`${serverUrl}/map`).then(data => {
-            this.setState({
-                locations: data.data
+        console.log(this)
+        axios.get(`${serverUrl}/map/getkey`).then(key => {
+
+            axios.get(`${serverUrl}/map`).then(locations => {
+                this.setState({
+                    locations: locations.data,
+                    key: key.data
+                })
             })
+
         })
+
+
+
     }
 
    renderMap = () => {
+       if(!this.state.key){
+            return <div>...loading</div>
+       }
     return (
         <div className="map">
             <div>
             </div>
             <GoogleMapReact
-                bootstrapURLKeys={{ key: "AIzaSyAXRFFGyftsCPWQA7TDXl8ah7fCdeJedsQ" }}
+                bootstrapURLKeys={{key: this.state.key}}
                 defaultCenter={this.state.center}
                 defaultZoom={this.state.zoom}
             >
@@ -42,9 +54,11 @@ class Map extends Component {
 
    
    render() {
-    console.log(this.state.locations)
+    console.log(this.state)
+
        return (
             this.renderMap()
+            // <div></div>
        )
    }
 }

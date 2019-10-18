@@ -7,7 +7,6 @@ import serverUrl from '../configServer'
 export default class Leaderboard extends Component {
   state = {
     leaderboard: [],
-    change: false,
     loggedInUser: this.props.loggedInUser
   }
 
@@ -34,7 +33,7 @@ export default class Leaderboard extends Component {
         <div className="halfrow">
         {this.state.leaderboard.map((leader, i) => {
           console.log(i, this.state.loggedInUser.friends)
-          return <UserCard loggedInUser={this.state.loggedInUser} key={i} leader={leader} pleaseChange={this.pleaseChange} changed={this.state.change}/>
+          return <UserCard loggedInUser={this.state.loggedInUser} key={i} leader={leader} pleaseChange={this.pleaseChange} />
         })}
         </div>
       </main>

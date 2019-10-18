@@ -16,10 +16,9 @@ export default class EditProfile extends Component {
     this.service = new AuthService();
   }
 
-  handleFormSubmit = (event) => {
+  handleFormSubmit = () => {
     const image = this.state.image;
     const bio = this.state.bio;
-    event.preventDefault()
 
     axios.put(`${serverUrl}/user/profile/edit/${this.props.loggedInUser._id}`, { bio, image }, {withCredentials:true})
     .then( () => {

@@ -33,6 +33,7 @@ export default class EditProfile extends Component {
   }
 
   handleChangeBio = (event) => {  
+    console.log(this.props)
     this.setState({
       bio:event.target.value
     })

@@ -112,6 +112,12 @@ authRoutes.get('/loggedin', (req, res, next) => {
   res.status(403).json({ message: 'Unauthorized' });
 });
 
+authRoutes.get('/profile', (req,res,next) => {
+    User.findById(req.user.id).then(data => {
+        res.json(data)
+    }).catch(err => next(err))
+})
+
 
 authRoutes.delete('/delete', (req,res,next) => {
         User.findByIdAndRemove(req.user.id).then(data => {

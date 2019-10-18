@@ -10,7 +10,7 @@ class Map extends Component {
             lat: 44,
             lng: -12
         },
-        zoom: 6
+        zoom: 8
     }
 
     componentDidMount() {
@@ -30,7 +30,6 @@ class Map extends Component {
     }
 
     handleMarkers = () => {
-        console.log(this.state.locations)
         return this.state.locations.map((location, key) => {
             return <Marker lat={location.lat} lng={location.long} text={key} />
         })
@@ -59,7 +58,6 @@ class Map extends Component {
 
    
    render() {
-    console.log(this.state)
 
        return (
             this.renderMap()

@@ -54,17 +54,15 @@ export default class TodayAction extends Component {
       return (
         <main>
           <Sidebar/>
-          <div className="half">
-              <div className="card text-white bg-success mb-3">
-                <div className="card-header">Today's DOST</div>
-                <div className="card-body">
-                  <p className="card-text">{this.state.action.title}</p>
-                  <p className="card-text small">This task has been completed {this.state.action.timesCompleted} times</p>
-                </div>
-                <div className="buttons">
-                  <Button onClick={() => {this.handleCompleted()}} name={<FontAwesomeIcon icon={faCheck} />}/>
-                  <Button link="/action" name={<FontAwesomeIcon icon={faTimes} />}/>
-                </div>
+          <div className="card text-white bg-success mb-3">
+            <div className="card-header">Today's DOST</div>
+            <div className="card-body">
+              <p className="card-text">{this.state.action.title}</p>
+              <p className="card-text small">This task has been completed {this.state.action.timesCompleted} times</p>
+            </div>
+            <div className="buttons">
+              <Button onClick={() => {this.handleCompleted()}} name={<FontAwesomeIcon icon={faCheck} />}/>
+              <Button link="/action" name={<FontAwesomeIcon icon={faTimes} />}/>
             </div>
           </div>
         </main>

@@ -6,7 +6,7 @@ export default class Admin extends Component {
 
     if (this.props.loggedInUser.isAdmin) {
       return (
-        <Button link={"/admin"} name="admin pannel" />
+        <Button link={"/admin"} name="admin panel" />
     )
     }
     else {

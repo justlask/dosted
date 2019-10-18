@@ -35,7 +35,7 @@ export default class Home extends Component {
       return (
         <main>
           <Sidebar loggedInUser={this.props.loggedInUser}/>
-          <div className="halfrow">
+          <div className="titleName">
             <h1>
               Do<br></br>
               One<br></br>

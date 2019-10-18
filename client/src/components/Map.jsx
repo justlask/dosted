@@ -10,25 +10,23 @@ class Map extends Component {
             lat: 44,
             lng: -12
         },
-        zoom: 2
+        zoom: 6
     }
 
-
     componentDidMount() {
-        console.log(this)
-        axios.get(`${serverUrl}/map/getkey`).then(key => {
-
+        axios.get(`${serverUrl}/map/getkey`).then(response => {
+            console.log(response.data)
             axios.get(`${serverUrl}/map`).then(locations => {
                 this.setState({
                     locations: locations.data,
-                    key: key.data
+                    key: response.data.key,
+                    center: {
+                        lat: response.data.lat,
+                        lng: response.data.long
+                    }
                 })
             })
-
         })
-
-
-
     }
 
    renderMap = () => {
@@ -58,7 +56,6 @@ class Map extends Component {
 
        return (
             this.renderMap()
-            // <div></div>
        )
    }
 }

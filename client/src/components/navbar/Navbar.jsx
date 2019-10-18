@@ -28,24 +28,23 @@ class Navbar extends Component {
     if(this.state.loggedInUser && this.state.loggedInUser.isAdmin){
       return(
         <nav>
-            <div className="mainnav">
-              <Link to="/"><h1>DOSTED</h1></Link>
-              <div>
-              <Admin loggedInUser={this.state.loggedInUser}/>
+            <div className="mainnav">              
+            <Admin loggedInUser={this.state.loggedInUser}/>
+              <Link to="/"><h1 className="bold">DOSTED</h1></Link>
+              <div className="navbuttons">
               <Link to='/'>
                 <button onClick={() => this.logoutUser()}>Logout</button>
               </Link>
               </div>
             </div>
-            Welcome, {this.state.loggedInUser.username}
-
         </nav>
       )
     } 
     else if (this.state.loggedInUser) {
         return ( 
-          <nav className="nav-style">
-            <Link to="/"><h1>DOSTED</h1></Link>
+          <nav className="mainnav">
+            <div></div>
+            <Link to="/"><h1 className="bold">DOSTED</h1></Link>
             <Link to='/'>
                 <button onClick={() => this.logoutUser()}>Logout</button>
               </Link>
@@ -54,8 +53,10 @@ class Navbar extends Component {
     }
     else {
       return ( 
-        <nav className="nav-style">
-          <Link to="/"><h1>DOSTED</h1></Link>
+        <nav className="mainnav">
+          <div></div>
+          <Link to="/"><h1 className="bold">DOSTED</h1></Link>
+          <div></div>
         </nav>
       )
     }

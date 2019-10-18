@@ -19,7 +19,6 @@ export default class Leaderboard extends Component {
   }
 
   pleaseChange = (newUser) => {
-    console.log(newUser, '[][][][')
     this.setState({
       change: !this.state.change,
       loggedInUser: newUser

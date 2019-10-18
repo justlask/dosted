@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import AuthService from '../auth/AuthService'
 import Sidebar from '../Sidebar'
 import Button from '../Button'
+import ActionCard from '../actions/ActionCard'
 
 export default class FriendProfile extends Component {
   state = {
@@ -29,7 +30,8 @@ export default class FriendProfile extends Component {
     }
     else {
       return this.state.friend.actions.map(action => {
-        return <div>{action.title}</div>
+        console.log(action)
+        return <ActionCard action={action} />
       })
     }
   }
@@ -55,7 +57,7 @@ export default class FriendProfile extends Component {
               </div>
             </div>
           </div>
-          <div>
+          <div className="actioncard">
             <h3>Actions Completed:</h3>
             {this.getActions()}
           </div>

@@ -48,6 +48,8 @@ class App extends Component {
       loggedInUser: userObj
     })
   }
+
+
   render() {
     {this.fetchUser()}
     if(this.state.loggedInUser){
@@ -60,7 +62,7 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} path='/profile/:id' component={FriendProfile} />
             <ProtectedRoute user={this.state.loggedInUser} path="/profile" component={Profile} />
             <ProtectedRoute user={this.state.loggedInUser} path='/action' component={TodayAction} />
-            <ProtectedRoute user={this.state.loggedInUser} path="/edit" component={EditProfile} getUser={this.getTheUser} />
+            <ProtectedRoute user={this.state.loggedInUser} path="/edit" component={EditProfile} getUser={this.getTheUser} pleaseChange={this.pleaseChange} />
             <ProtectedRoute user={this.state.loggedInUser} path="/leaderboard" component={Leaderboard}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/friends' component={Friends} />
             <ProtectedRoute user={this.state.loggedInUser} path='/suggestion' component={NewSuggestion}/>

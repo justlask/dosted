@@ -4,6 +4,7 @@ import Button from '../Button'
 import Sidebar from '../Sidebar'
 import AuthService from '../auth/AuthService'
 import Axios from 'axios'
+import ActionCard from '../actions/ActionCard'
 
 export default class Profile extends Component {
   constructor(props){
@@ -36,7 +37,7 @@ export default class Profile extends Component {
   getActions = () => {
     console.log(this.state.loggedInUser.actions)
     return this.state.loggedInUser.actions.map(action => {
-      return <div>{action.title}</div>
+      return <ActionCard action={action}/>
     })
   }
 
@@ -60,7 +61,7 @@ export default class Profile extends Component {
               </div>
             </div>
           </div>
-          <div>
+          <div className="actioncard">
             <h2>Actions Completed:</h2>
             {this.getActions()}
           </div>

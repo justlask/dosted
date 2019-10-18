@@ -28,8 +28,7 @@ export default class NewSuggest extends Component {
     return (
       <main>
         <div className="half">
-        <p>MAKE A SUGGESTION FOR A DOST</p>
-        <form onSubmit={(e) => this.handleSuggestSubmit(e)}>
+        <form onSubmit={(e) => this.handleSuggestSubmit(e)} className="darkblue">
 
           <label for="title"><b>What's one small thing that anyone could do to make the world a better place?</b></label><br></br>
           <input type="text" onChange={(e) => this.handleSuggestChange(e)} /> 

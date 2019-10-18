@@ -96,6 +96,16 @@ footer {
   padding: 10px 20px;
 }
 
+.actioncard {
+  color: #1d617a;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.darkblue {
+  color: #1d617a;
+}
+
 main {
   min-height: 60vh;
   width: 100vw;

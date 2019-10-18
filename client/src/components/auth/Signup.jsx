@@ -39,6 +39,7 @@ class Signup extends Component {
       // more code will be added here
       <div className="flexcolfull">
         <form onSubmit={this.handleFormSubmit} className="signup-login">
+          <h1>Signup</h1>
          <div>
          <label  className="icons"><FontAwesomeIcon icon={faUser} /></label>
           <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>

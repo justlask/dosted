@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import Button from '../Button'
+import Map from '../Map'
 
 export default class TodayAction extends Component {
   state = {
@@ -71,6 +72,7 @@ export default class TodayAction extends Component {
           <div className="half">
             <h1>CONGRATS!</h1>
             <h3>You've done your part!</h3>
+            <Map />
           </div>
         </main>
       )

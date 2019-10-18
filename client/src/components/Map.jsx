@@ -29,6 +29,13 @@ class Map extends Component {
         })
     }
 
+    handleMarkers = () => {
+        console.log(this.state.locations)
+        return this.state.locations.map((location, key) => {
+            return <Marker lat={location.lat} lng={location.long} text={key} />
+        })
+    }
+
    renderMap = () => {
        if(!this.state.key){
             return <div>...loading</div>
@@ -43,7 +50,7 @@ class Map extends Component {
                 defaultZoom={this.state.zoom}
             >
         
-                 <Marker lat={19.390519} lng={-99.4238064} text={'A'} /* Kreyser Avrora */ />
+            {this.handleMarkers()}
             </GoogleMapReact>
         </div>
     )

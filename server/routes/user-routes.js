@@ -113,9 +113,7 @@ router.put('/completed', (req,res,next) => {
 
   // get ip address
   // 
-
   var ip = req.header('x-forwarded-for') || req.connection.remoteAddress;
-  console.log(ip)
   axios.get(`http://api.ipstack.com/${ip}?access_key=73c433d44b1edd11638377b796be6f74&format=1`)
   .then(data => {
     let latitude = data.data.latitude
@@ -125,7 +123,7 @@ router.put('/completed', (req,res,next) => {
       return
     }
     else {
-      Locations.create({lat : latitude, long: longitude}).then(()=>{}).catch(err => next(err))
+      Locations.create({lat : latitude, long: longitude}).then((data)=>{}).catch(err => next(err))
     }
   }).catch(err => console.log(err))
 })

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AuthService from './AuthService';
 import { Link, Redirect } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
 
 class Login extends Component {
   constructor(props){
@@ -39,10 +41,14 @@ class Login extends Component {
       return ( 
           <div className="flexcolfull">
             <form onSubmit={this.handleFormSubmit} className="signup-login">
-            <label>Username:</label>
-            <input type="text" name="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
-                    <label>Password:</label>
-                    <input type="password" name="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
+              <div>
+                <label className="icons"><FontAwesomeIcon icon={faUser} /></label>
+                <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
+              </div>
+              <div>
+                <label className="icons"><FontAwesomeIcon icon={faLock} /></label>
+                <input type="password" name="password" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
+              </div>
                     
                 <input type="submit" value="Login" className="submitbtn" />
                 </form>

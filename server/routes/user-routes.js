@@ -77,19 +77,19 @@ router.put('/completed', (req,res,next) => {
       updateObj.lastDayCompleted = moment().unix()
       updateObj.currentStreak = 1
     }
-    else if ((now - data.lastDayCompleted) > 86400000 && (now - data.lastDayCompleted) < 172800000) {
+    if ((now - data.lastDayCompleted) > 86400000 && (now - data.lastDayCompleted) < 172800000) {
       console.log(' =>>>>>>>>>>> completed more than a day ago')
       updateObj.lastDayCompleted = moment().unix()
       updateObj.actionsCompleted = data.actionsCompleted + 1
       updateObj.currentStreak = data.currentStreak +1
     }
-    else if ((now - data.lastDayCompleted) > 172800000) {
+    if ((now - data.lastDayCompleted) > 172800000) {
       console.log(' =>>>>>>>>>>> completed more than 2 days ago')
       updateObj.currentStreak = 0
       updateObj.lastDayCompleted = moment().unix()
       updateObj.actionsCompleted = data.actionsCompleted + 1
     }
-    else {
+    if ((now - data.lastDayCompleted) < 86400000) {
       console.log(' =>>>>>>>>>>> in between today and tomorrow')
       updateObj.actionsCompleted = data.actionsCompleted + 1
     }

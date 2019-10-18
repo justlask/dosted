@@ -7,9 +7,7 @@ export default class Button extends Component {
   }
   render() {
     return (
-      <div>
         <Link to={this.props.link}><button onClick={this.props.onClick}>{this.props.name}</button></Link>
-      </div>
     )
   }
 }

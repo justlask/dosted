@@ -67,18 +67,19 @@ handleFileUpload = e => {
   render() {
     return (
       <main>
-        <form onSubmit={this.handleFormSubmit} enctype="multipart/form-data">
-          <p>THIS IS WHERE YOU EDIT YOUR PROFILE</p>
-          <label for="photo"><b>profile picture</b></label>
+        <form onSubmit={this.handleFormSubmit} enctype="multipart/form-data" className="editform">
+          <div>
+          <label for="photo"><b>Profile Picture</b></label><br></br>
           <input type="file" onChange={(e) => this.handleFileUpload(e)} /> 
-          <label>Bio:</label>
-          <textarea name="bio" value={this.state.bio} onChange={ e => this.handleChangeBio(e)} />
-          <input type="submit" value="Submit" onSubmit={e => this.handleFormSubmit()} />
+          </div>
+          <div>
+          <label><b>Bio</b></label><br></br>
+          <textarea name="bio" className="bio" value={this.state.bio} onChange={ e => this.handleChangeBio(e)} />
+          </div>
+          <Button className="submitbtn" name="submit" onClick={e => this.handleFormSubmit()} />
         </form>
 
-        <form onClick={this.handleDelete}>
-          <Button name="Delete Account" />
-        </form>
+          <Button className="submitbtn delete" onClick={this.handleDelete} name="Delete Account" />
 
     </main>
     )

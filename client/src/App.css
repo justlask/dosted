@@ -177,7 +177,6 @@ main {
   justify-self: flex-end;
   align-self: flex-end;
 }
-
 .suggest {
     margin: 10px;  
     background: #bed9d1;
@@ -188,8 +187,41 @@ main {
 .signup-login {
   display: flex;
   flex-direction: column;
+  background-color: #1d617a;
+  padding: 40px 50px;
+  color: #bed9d1;
+  margin-bottom: 20px;
 }
 
+.signup-login  div {
+  margin-bottom: 20px;
+}
+
+.editform {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+  min-height: 500px;
+  text-align: left;
+}
+
+.editform a {
+  align-self: left;
+  align-self: flex-end;
+  justify-self: flex-end;
+}
+
+.bio {
+  height: 200px;
+  min-width: 300px;
+}
+
+
+
+.icons {
+  padding: 0px 5px;
+}
 
 .thumb {
   height: 240px;
@@ -270,4 +302,10 @@ button:hover {
   color: black;
   margin-right: -25px;
   z-index: 5;
+}
+
+
+
+.delete {
+  color: red;
 }

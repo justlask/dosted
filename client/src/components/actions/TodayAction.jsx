@@ -60,7 +60,7 @@ export default class TodayAction extends Component {
             </div>
             <div className="buttons">
               <Button onClick={() => {this.handleCompleted()}} name={<FontAwesomeIcon icon={faCheck} />}/>
-              <Button link="/action" name={<FontAwesomeIcon icon={faTimes} />}/>
+              <Button onClick={() => this.TodayAction()} name={<FontAwesomeIcon icon={faTimes} />}/>
             </div>
           </div>
         </main>

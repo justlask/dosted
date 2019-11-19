@@ -33,11 +33,6 @@ class Login extends Component {
 
 
   render(){
-    if(this.state.loggedInUser){
-      return(
-        <Redirect to="/actions" />
-      )
-    } else {
       return ( 
           <div className="flexcolfull">
             <form onSubmit={this.handleFormSubmit} className="signup-login">
@@ -59,7 +54,6 @@ class Login extends Component {
             </div> 
       )
     }
-  }
 }
 
 export default Login;

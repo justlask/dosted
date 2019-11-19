@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react';
 import AuthService from './AuthService';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons'
+import Button from '../Button'
 
 class Signup extends Component {
   constructor(props){
@@ -17,6 +18,7 @@ class Signup extends Component {
     event.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
+
   
     this.service.signup(username, password)
     .then( response => {
@@ -25,6 +27,8 @@ class Signup extends Component {
             password: "",
         });
         this.props.getUser(response)
+        this.props.history.push('/action')
+
     })
     .catch( error => console.log(error) )
   }
@@ -35,31 +39,29 @@ class Signup extends Component {
   }
 
   render(){
-    return(
-      // more code will be added here
-      <div className="flexcolfull">
-        <form onSubmit={this.handleFormSubmit} className="signup-login">
-          <h1>Signup</h1>
-         <div>
-         <label  className="icons"><FontAwesomeIcon icon={faUser} /></label>
-          <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
-         </div>
-          
+      return(
+        // more code will be added here
+        <div className="flexcolfull">
+          <form onSubmit={this.handleFormSubmit} className="signup-login">
           <div>
-          <label  className="icons"><FontAwesomeIcon icon={faLock} /></label>
-          <input type="password" name="password" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
+          <label  className="icons"><FontAwesomeIcon icon={faUser} /></label>
+            <input type="text" name="username" placeholder="username" value={this.state.username} onChange={ e => this.handleChange(e)}/><br></br>
           </div>
-          
-          <input className="submitbtn" type="submit" value="Signup" />
-        </form>
+            
+            <div>
+            <label  className="icons"><FontAwesomeIcon icon={faLock} /></label>
+            <input type="password" name="password" placeholder="password" value={this.state.password} onChange={ e => this.handleChange(e)} /><br></br>
+            </div>
+            <input className="submitbtn" type="submit" value="Signup" />
+          </form>
 
-        <p>Already have account? 
-            <Link to={"/login"}> Login</Link>
-        </p>
+          <p>Already have account? 
+              <Link to={"/login"}> Login</Link>
+          </p>
 
-    </div>
-    )
-  }
+      </div>
+      )
+    } 
 }
 
 export default Signup;

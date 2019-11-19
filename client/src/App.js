@@ -80,7 +80,7 @@ class App extends Component {
             <Switch> 
               <Route path='/map' render={() => <Map />} />
               <Route exact path='/' render={() => <Home getUser={this.getTheUser}/>}/>
-              <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
+              <Route exact path='/signup' render={(props) => <Signup user={this.state.loggedInUser} {...props} getUser={this.getTheUser}/>}/>
               <Route exact path='/login' render={(props) => <Login user={this.state.loggedInUser} {...props} getUser={this.getTheUser}/>}/>
               {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} />
               <ProtectedRoute user={this.state.loggedInUser} path='/projects' component={ProjectList} /> */}

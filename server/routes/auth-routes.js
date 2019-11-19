@@ -1,4 +1,3 @@
-
 const express    = require('express');
 const authRoutes = express.Router();
 
@@ -49,8 +48,8 @@ authRoutes.post('/signup', (req, res, next) => {
                 res.status(400).json({ message: 'Saving user to database went wrong.' });
                 return;
             }
-            
-            // Automatically log in user after sign up
+
+                        // Automatically log in user after sign up
             // .login() here is actually predefined passport method
             req.login(aNewUser, (err) => {
 
@@ -104,6 +103,7 @@ authRoutes.post('/logout', (req, res, next) => {
 
 
 authRoutes.get('/loggedin', (req, res, next) => {
+    console.log(req)
   // req.isAuthenticated() is defined by passport
   if (req.isAuthenticated()) {
       res.status(200).json(req.user);

@@ -94,6 +94,7 @@ footer {
   color: white;
   min-width: 300px;
   padding: 10px 20px;
+  border-radius: 12px;
 }
 
 .actioncard {
@@ -201,7 +202,15 @@ main {
   padding: 40px 50px;
   color: #bed9d1;
   margin-bottom: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.signup-login input {
+  border-radius: 6px;
+  padding: 5px;
+}
+
 
 .signup-login  div {
   margin-bottom: 20px;

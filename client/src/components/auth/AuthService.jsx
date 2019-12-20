@@ -78,6 +78,11 @@ class AuthService {
     .then(res => res.data)
     .catch(err => console.log(err))
   }
+  resetPass(email) {
+    return this.service.post(`/auth/resetpassword`, email)
+    .then(res => res.data)
+    .catch(err => console.log(err))
+  }
 }
 
 export default AuthService;

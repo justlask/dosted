@@ -15,7 +15,7 @@ class ResetPass extends Component {
   render() {
     return (
       <div className="flexcolfull">
-        Forgot Your Password?
+       HEY! THIS WORKED~
       </div>
     )
   }

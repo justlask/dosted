@@ -1,5 +1,6 @@
 const express    = require('express');
 const authRoutes = express.Router();
+const nodemailer = require('nodemailer')
 
 const passport   = require('passport');
 const bcrypt     = require('bcryptjs');
@@ -116,7 +117,7 @@ authRoutes.get('/profile', (req,res,next) => {
     User.findById(req.user.id).populate('actions').then(data => {
         res.json(data)
     }).catch(err => next(err))
-})
+});
 
 
 authRoutes.delete('/delete', (req,res,next) => {
@@ -124,6 +125,40 @@ authRoutes.delete('/delete', (req,res,next) => {
           req.logout();
           res.status(200).json({ message: 'Deleted successfully' });
         }).catch(err => next(err))
-})
+});
+
+
+authRoutes.post('/updatepassword', (req, res, next) => {
+    // find the user by the email | username
+
+    User.find({ email: req.body.email })
+    .then(user => {
+
+        if (user === null) {
+            // handle case if no email | username is found
+            res.status(400).json({ message: 'No account with that email exists.'});
+            return;
+        }
+        else {
+            User.findByIdAndUpdate(user._id)
+            .then(data => {
+
+
+
+                // send email with new pass here
+            })
+
+
+        }
+
+
+        
+    })
+
+
+    // change password to a random hashed pass
+    // email that hashed pass to that email with nodemailer
+    // 
+});
 
 module.exports = authRoutes;

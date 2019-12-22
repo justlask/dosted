@@ -20,6 +20,9 @@ import AllSuggest from './components/suggestions/AllSuggest';
 import FriendProfile from './components/profile/FriendProfile';
 import Map from './components/Map'
 
+import ForgotPass from './components/auth/ForgotPass'
+import ResetPass from './components/auth/ResetPass'
+
 class App extends Component {
   constructor(props){
     super(props)
@@ -67,6 +70,8 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} path='/friends' component={Friends} />
             <ProtectedRoute user={this.state.loggedInUser} path='/suggestion' component={NewSuggestion}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/admin' component={AllSuggest} />
+            <Route path="/forgot" render={() => <ForgotPass />} />
+            <Route path="/reset" render={() => <ResetPass />} />
             <Route path='/map' render={() => <Map />} />
                         {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} /> */}
           </Switch>

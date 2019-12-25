@@ -20,10 +20,11 @@ class ForgotPassword extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.service.resetPass({email: this.state.email})
+    this.service.resetPass(this.state.email)
     .then(data => {
-      console.log(data)
+      console.log('data is ' + data)
     })
+    .catch(err => console.log(err))
   }
 
   render() {

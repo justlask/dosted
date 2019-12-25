@@ -79,8 +79,8 @@ class AuthService {
     .catch(err => console.log(err))
   }
   resetPass(email) {
-    return this.service.post(`/auth/resetpassword`, email)
-    .then(res => res.data)
+    return this.service.post(`/auth/resetpassword`, { email })
+    .then(res => res)
     .catch(err => console.log(err))
   }
 }

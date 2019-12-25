@@ -129,18 +129,22 @@ authRoutes.delete('/delete', (req,res,next) => {
 
 
 authRoutes.post('/resetpassword', (req, res, next) => {
-    console.log(req.body.email)
+    console.log('req.body.email    ' + req.body.email)
+    console.log(typeof req.body.email)
     // find the user by the email | username
-    let email = req.body.email
-    User.findOne({ email })
-    .then(user => {
-        console.log(user)
-        if (user === null) {
+    const userEmail = req.body.email
+
+
+    User.findOne({email: userEmail},)
+    .then(foundUser => {
+        console.log('user     ' + foundUser)
+        if (foundUser === null) {
             // handle case if no email | username is found
             res.status(400).json({ message: 'No account with that email exists.'});
             return;
         }
-        else {
+
+        if (foundUser) {
             const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             let tempPass = '';
 
@@ -150,46 +154,39 @@ authRoutes.post('/resetpassword', (req, res, next) => {
 
             const resetSalt     = bcrypt.genSaltSync(10);
             const resetPass = bcrypt.hashSync(tempPass, resetSalt);
-
-
             // change password to a random hashed pass
 
+            User.findByIdAndUpdate(foundUser._id, {
+                password: resetPass
+            })
+            .then(data => {
+                // email that hashed pass to that email with nodemailer
+                let transporter = nodemailer.createTransport({
+                    service: 'Gmail',
+                    auth: {
+                      user: process.env.NODE_EMAIL,
+                      pass: process.env.NODE_PASS
+                    }
+                  });
+                  let message = `<b>Hello ${data.username}, <br><br> Your temporary password is ${tempPass}. Please Click <a href="www.dosted.herokuapp.com/${data.username}/${tempPass}">here</a> to reset your password.`
 
+                  transporter.sendMail({
+                    from: 'DOSTED - Do One Small Thing Every Day',
+                    to: userEmail,
+                    subject: `Your Password Reset Information for DOSTED`, 
+                    text: message,
+                    html: `<b>Hello ${data.username}, <br><br> Your temporary password is ${tempPass}. Please Click <a href="www.dosted.herokuapp.com/${data.username}/${tempPass}">here</a> to reset your password.`
+                  })
+                  .then(
+                      res.status(200).json({message: 'we have emailed you a link to reset your password.'})
+                  )
+                  .catch(error => console.log(error));
 
-            // User.findByIdAndUpdate(user.id, {
-            //     password: resetPass
-            // })
-            // .then(data => {
-            //     // email that hashed pass to that email with nodemailer
-            //     let transporter = nodemailer.createTransport({
-            //         service: 'Gmail',
-            //         auth: {
-            //           user: process.env.NODE_EMAIL,
-            //           pass: process.env.NODE_PASS
-            //         }
-            //       });
-            //       let message = `<b>Hello ${data.username}, <br><br> Your temporary password is ${tempPass}. Please Click <a href="www.dosted.herokuapp.com/${data.username}/${tempPass}">here</a> to reset your password.`
-
-            //       transporter.sendMail({
-            //         from: 'DOSTED - Do One Small Thing Every Day',
-            //         to: req.body.email,
-            //         subject: `Your Password Reset Information for DOSTED`, 
-            //         text: message,
-            //         html: `<b>Hello ${data.username}, <br><br> Your temporary password is ${tempPass}. Please Click <a href="www.dosted.herokuapp.com/${data.username}/${tempPass}">here</a> to reset your password.`
-            //       })
-            //       .then(
-            //           res.status(200).json({message: 'we have emailed you a link to reset your password.'})
-            //       )
-            //       .catch(error => console.log(error));
-
-            // })
+            })
             console.log(`the tempPass is ${tempPass}`)
             console.log(`the resetPass is ${resetPass}`)
         }
-
-
-        
-    })
+    });
 
 });
 

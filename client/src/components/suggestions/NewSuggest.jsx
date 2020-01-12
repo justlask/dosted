@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import Sidebar from '../Sidebar'
 import axios from 'axios'
 import serverUrl from '../../configServer'
 
 
 export default class NewSuggest extends Component {
   state = {
-    title: ''
+    title: '',
+    submitted: false
   }
 
   handleSuggestSubmit = (e) => {
@@ -15,27 +15,40 @@ export default class NewSuggest extends Component {
     let userID = this.props.loggedInUser
     axios.post(`${serverUrl}/suggestions/new`, {userID, title})
     .then(response => {
+      this.setState({
+        submitted: true
+      })
     }).catch(err => console.log(err))
   }
 
   handleSuggestChange = e => {
-    console.log(e.target.value)
     this.setState({
       title: e.target.value
     })
   }
   render() {
-    return (
-      <main>
-        <div className="half">
-        <form onSubmit={(e) => this.handleSuggestSubmit(e)} className="darkblue">
-
-          <label for="title"><b>What's one small thing that anyone could do to make the world a better place?</b></label><br></br>
-          <input type="text" onChange={(e) => this.handleSuggestChange(e)} /> 
-          <input type="submit" value="Submit" />
-        </form>
-        </div>
-      </main>
-    )
+    if (this.state.submitted) {
+      return (
+        <main>
+          <div className="half">
+            <h1>You have submitted a suggestion, thank you, our admin will edit and approve your suggestion!</h1>
+          </div>
+        </main>
+      )
+    }
+    else {
+      return (
+        <main>
+          <div className="half">
+          <form onSubmit={(e) => this.handleSuggestSubmit(e)} className="darkblue">
+  
+            <label for="title"><b>What's one small thing that anyone could do to make the world a better place?</b></label><br></br>
+            <input type="text" onChange={(e) => this.handleSuggestChange(e)} /> 
+            <input type="submit" value="Submit" />
+          </form>
+          </div>
+        </main>
+      )
+    }
   }
 }

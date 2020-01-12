@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import AuthService from './auth/AuthService';
 import Button from './Button'
-import Sidebar from './Sidebar'
 
 export default class Home extends Component {
   constructor(props){
@@ -10,7 +7,6 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log(this.props.user)
     if (this.props.user === undefined) {
       return (
         <div className="flexcolfull">

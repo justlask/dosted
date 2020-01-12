@@ -1,16 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,700&display=swap');
 
+
+
+/* Welcome, {this.state.loggedInUser.username} */
 * {
-  margin: 0;
-  padding: 0;
   font-family: 'Poppins';
   font-weight: 500;
 }
 
+/* img {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+} */
 
 .App {
   font-family: 'Poppins';
   text-align: center;
+  /* background-color: #09d3ac; */
   background-color: #dbefe1;
   min-height: 100vh;
 }
@@ -324,22 +329,4 @@ button:hover {
 
 .delete {
   color: red;
-}
-
-
-.noButton {
-  font-weight: 500;
-  color: #dbefe1;
-  background-color: inherit;
-  border: none;
-}
-
-.noButton:hover {
-  color: #bed9d1;
-}
-
-.editformmain {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
 }

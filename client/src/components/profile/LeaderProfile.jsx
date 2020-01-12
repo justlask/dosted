@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import Button from '../Button'
-import Sidebar from '../Sidebar'
 import AuthService from '../auth/AuthService'
 
 export default class LeaderProfile extends Component {

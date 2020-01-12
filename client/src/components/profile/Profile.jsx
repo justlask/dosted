@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import Button from '../Button'
-import Sidebar from '../Sidebar'
 import AuthService from '../auth/AuthService'
-import Axios from 'axios'
 import ActionCard from '../actions/ActionCard'
 
 export default class Profile extends Component {
   constructor(props){
     super(props);
     this.service = new AuthService();
+    this.state = {
+      loggedInUser: this.props.loggedInUser
+    }
   }
 
   state = {
@@ -45,6 +45,7 @@ export default class Profile extends Component {
     return (
       <main>
         <div className="halfrow">
+        <Button link="edit" name="Edit Profile" pleaseChange={this.pleaseChange}/>
           <div className="card mb-3 profileImg">
             <div className="row no-gutters">
               <div className="col-md-4">
@@ -67,8 +68,6 @@ export default class Profile extends Component {
           </div>
 
 
-
-          <Button link="edit" name="Edit Profile" pleaseChange={this.pleaseChange}/>
         </div>
       </main>
     )

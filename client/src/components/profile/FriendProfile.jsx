@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import AuthService from '../auth/AuthService'
-import Sidebar from '../Sidebar'
-import Button from '../Button'
 import ActionCard from '../actions/ActionCard'
 
 export default class FriendProfile extends Component {

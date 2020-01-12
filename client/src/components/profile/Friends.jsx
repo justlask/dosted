@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import AuthService from '../auth/AuthService'
 import UserCard from '../profile/UserCard'
-import Sidebar from '../Sidebar'
 import axios from 'axios'
 import serverUrl from '../../configServer'
 

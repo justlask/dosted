@@ -5,10 +5,6 @@ export default class Marker extends Component {
     super(props);
   }
 
-
-
-  
-
   render() {
     return (
        <div className="marker">

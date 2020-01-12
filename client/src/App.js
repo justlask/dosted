@@ -19,6 +19,7 @@ import NewSuggestion from './components/suggestions/NewSuggest'
 import AllSuggest from './components/suggestions/AllSuggest';
 import FriendProfile from './components/profile/FriendProfile';
 import Map from './components/Map'
+import SecondaryNav from './components/navbar/SecondaryNavbar'
 
 import ForgotPass from './components/auth/ForgotPass'
 import ResetPass from './components/auth/ResetPass'
@@ -59,6 +60,7 @@ class App extends Component {
       return (
         <div className="App">
           <Navbar userInSession={this.state.loggedInUser} getUser={this.getTheUser} />
+          <SecondaryNav />
           <Switch>
             <Route exact path='/' render={() => <Home user={this.state.loggedInUser} getUser={this.getTheUser}/>}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/actions' component={AllActions} />

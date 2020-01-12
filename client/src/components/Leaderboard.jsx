@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import UserCard from '../components/profile/UserCard'
-import Sidebar from '../components/Sidebar'
 import serverUrl from '../configServer'
 
 export default class Leaderboard extends Component {

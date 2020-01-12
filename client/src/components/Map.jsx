@@ -15,7 +15,6 @@ class Map extends Component {
 
     componentDidMount() {
         axios.get(`${serverUrl}/map/getkey`).then(response => {
-            console.log(response.data)
             axios.get(`${serverUrl}/map`).then(locations => {
                 this.setState({
                     locations: locations.data,
@@ -58,7 +57,6 @@ class Map extends Component {
 
    
    render() {
-
        return (
             this.renderMap()
        )

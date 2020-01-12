@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AuthService from '../auth/AuthService';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChartLine, faUser } from '@fortawesome/free-solid-svg-icons'
 import Admin from '../auth/Admin'
-import Sidebar from '../Sidebar'
 
 class Navbar extends Component {
   constructor(props){
@@ -34,11 +31,10 @@ class Navbar extends Component {
               <Link to="/"><h1 className="bold">DOSTED</h1></Link>
               <div className="navbuttons">
               <Link to='/'>
-                <button onClick={() => this.logoutUser()}>Logout</button>
+                <button className="noButton" onClick={() => this.logoutUser()}>Logout</button>
               </Link>
               </div>
             </div>
-            <Sidebar />
         </nav>
       )
     } 
@@ -49,10 +45,9 @@ class Navbar extends Component {
             <div></div>
             <Link to="/"><h1 className="bold">DOSTED</h1></Link>
             <Link to='/'>
-                <button onClick={() => this.logoutUser()}>Logout</button>
+                <button className="noButton" onClick={() => this.logoutUser()}>Logout</button>
               </Link>
             </div>
-          <Sidebar />
           </nav>
         )
     }

@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Button from '../Button'
 import AuthService from '../auth/AuthService'
-import Sidebar from '../Sidebar'
 import serverUrl from '../../configServer'
 
 export default class EditProfile extends Component {
@@ -82,7 +80,7 @@ handleChange = e => {
 
   render() {
     return (
-      <main>
+      <div className="editformmain">
         <form onSubmit={this.handleFormSubmit} enctype="multipart/form-data" className="editform">
           <div>
           <label for="photo"><b>Profile Picture</b></label><br></br>
@@ -105,7 +103,7 @@ handleChange = e => {
 
           <Button className="submitbtn delete" onClick={this.handleDelete} name="Delete Account" />
 
-    </main>
+    </div>
     )
   }
 }

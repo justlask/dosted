@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import NewSuggest from '../suggestions/NewSuggest'
-import Sidebar from '../Sidebar'
 import axios from 'axios'
 import SingleSuggest from '../suggestions/SingleSuggest'
 import serverUrl from '../../configServer'

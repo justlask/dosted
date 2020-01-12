@@ -14,27 +14,6 @@ export default class EditProfile extends Component {
     this.service = new AuthService();
   }
 
-  handleFormSubmit = () => {
-    const image = this.state.image;
-    const bio = this.state.bio;
-
-    axios.put(`${serverUrl}/user/profile/edit/${this.props.loggedInUser._id}`, { bio, image }, {withCredentials:true})
-    .then( () => {
-        this.setState({
-          bio: this.state.bio,
-          image: this.state.image
-        })
-        this.props.history.push('/profile');    
-    })
-    .catch( error => console.log(error) )
-  }
-
-  handleChangeBio = (event) => {  
-    console.log(this.props)
-    this.setState({
-      bio:event.target.value
-    })
-  }
   handleDelete = (e) => {
     this.service.deleteProfile(this.props.loggedInUser._id)
     .then(() => {
@@ -42,22 +21,6 @@ export default class EditProfile extends Component {
       }
     )  
   }
-
-// this method handles just the file upload
-handleFileUpload = e => {
-    console.log("The file to be uploaded is: ", e.target.files[0]);
-
-    const uploadData = new FormData();
-    uploadData.append("image", e.target.files[0]);
-    
-    this.service.handleUpload(uploadData)
-    .then(response => {
-        this.setState({ image: response.secure_url });
-      })
-      .catch(err => {
-        console.log("Error while uploading the file: ", err);
-      });
-}
 
 
 changePassword = e => {
@@ -79,31 +42,35 @@ handleChange = e => {
 
 
   render() {
-    return (
-      <div className="editformmain">
-        <form onSubmit={this.handleFormSubmit} enctype="multipart/form-data" className="editform">
-          <div>
-          <label for="photo"><b>Profile Picture</b></label><br></br>
-          <input type="file" onChange={(e) => this.handleFileUpload(e)} /> 
+    if (this.props.showmore) {
+      return (
+        <div className="card mb-3 profileImg">
+        <div className="row no-gutters">
+          <div className="col-md-4">
+            <img src={this.props.loggedInUser.image} className="card-img" alt="..." />
           </div>
-          <div>
-          <label><b>Bio</b></label><br></br>
-          <textarea name="bio" className="bio" value={this.state.bio} onChange={ e => this.handleChangeBio(e)} />
+          <div className="col-md-8">
+            <div className="card-body flexy">
+              <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                <Button name="less options" onClick={this.props.handleShowMore}></Button>
+                <Button name="cancel edit" onClick={this.props.show}></Button>
+              </div>
+            <form className="editform">
+            <div>
+            <label htmlFor="password">Update Password</label><br></br>
+            <input type="text" placeholder="New Password" onChange={(e) => this.handleChange(e)}/>
+            <input type="submit" value="submit" onClick={e => this.changePassword(e)}/>
+            </div>
+          </form>
+            <Button className="submitbtn delete" onClick={this.handleDelete} name="Delete Account" />
+            </div>
           </div>
-          <Button className="submitbtn" name="submit" onClick={e => this.handleFormSubmit()} />
-        </form>
-
-        <form className="editform">
-          <div>
-          <label htmlFor="password">Update Password</label><br></br>
-          <input type="text" placeholder="New Password" onChange={(e) => this.handleChange(e)}/>
-          <input type="submit" value="submit" onClick={e => this.changePassword(e)}/>
-          </div>
-        </form>
-
-          <Button className="submitbtn delete" onClick={this.handleDelete} name="Delete Account" />
-
-    </div>
-    )
+        </div>
+      </div>
+      )
+    }
+    else {
+      return null
+    }
   }
 }

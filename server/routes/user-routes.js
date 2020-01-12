@@ -20,15 +20,11 @@ router.post('/upload', uploadCloud.single("image"), (req, res, next) => {
   res.json({ secure_url: req.file.secure_url });
 })
 
-router.put('/profile/edit/:id', uploadCloud.single('image'), (req, res, next)=>{
-  if(!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(400).json({ message: 'Specified id is not valid' });
-    return;
-  }
+router.post('/profile/edit', uploadCloud.single('image'), (req, res, next)=>{
   
-  User.findByIdAndUpdate(req.params.id, req.body, {new:true})
+  User.findByIdAndUpdate(req.user._id, req.body, {new:true})
     .then((response) => {
-      res.json(response);
+      res.json(response)
     })
     .catch(err => {
       res.json(err);

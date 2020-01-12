@@ -89,6 +89,12 @@ class AuthService {
     .then(res =>  res.data)
     .catch(err => console.log(err))
   }
+
+  editProfile = (bio, image) => {
+    return this.service.post('/user/profile/edit', {bio, image})
+    .then(res => res.data)
+    .catch(err => console.log(err))
+  }
 }
 
 export default AuthService;

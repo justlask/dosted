@@ -22,12 +22,20 @@ export default class Friends extends Component {
     })
   }
 
+  pleaseChange = () => {
+    axios.get(`${serverUrl}/user/friends/${this.props.loggedInUser._id}`).then(response => {
+      this.setState({
+        friends: response.data.friends
+      })
+    })
+  }
+
   render() {
     return (
       <main>
         <div className="halfrow">
         {this.state.friends.map((friend, i) => {
-          return <UserCard loggedInUser={this.props.loggedInUser} key={i} leader={friend}/>
+          return <UserCard loggedInUser={this.props.loggedInUser} key={i} leader={friend} pleaseChange={this.pleaseChange}/>
         })}
         </div>
       </main>

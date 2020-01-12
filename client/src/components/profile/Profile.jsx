@@ -2,13 +2,17 @@ import React, { Component } from 'react'
 import Button from '../Button'
 import AuthService from '../auth/AuthService'
 import ActionCard from '../actions/ActionCard'
+import { Link } from 'react-router-dom'
+import ProfileCard from './ProfileCard'
+import EditCard from './EditCard'
 
 export default class Profile extends Component {
   constructor(props){
     super(props);
     this.service = new AuthService();
     this.state = {
-      loggedInUser: this.props.loggedInUser
+      loggedInUser: this.props.loggedInUser,
+      show: false
     }
   }
 
@@ -27,11 +31,15 @@ export default class Profile extends Component {
     }).catch(err => console.log(err))
   }
 
+  pleaseChange = () => {
+    this.service.getProfile()
+    .then(response => {
+      console.log("response =>>>" + response)
+      this.setState({
+        loggedInUser: response
+      })
 
-  pleaseChange = (newUser) => {
-    this.setState({
-      loggedInUser: newUser
-    })
+    }).catch(err => console.log(err))
   }
 
   getActions = () => {
@@ -41,27 +49,31 @@ export default class Profile extends Component {
     })
   }
 
+
+  handleProfileView = () => {
+    if (this.state.show) {
+      return (
+        <EditCard loggedInUser={this.state.loggedInUser} pleaseChange={this.pleaseChange} handleShow={this.handleShow}/>
+      )
+    }
+    else {
+      return ( 
+      <ProfileCard handleShow={this.handleShow} loggedInUser={this.state.loggedInUser}/>
+      )
+    }
+  }
+
+  handleShow = e => {
+    this.setState({
+      show: !this.state.show
+    })
+  }
+
   render() {
     return (
       <main>
         <div className="halfrow">
-        <Button link="edit" name="Edit Profile" pleaseChange={this.pleaseChange}/>
-          <div className="card mb-3 profileImg">
-            <div className="row no-gutters">
-              <div className="col-md-4">
-                <img src={this.props.loggedInUser.image} className="card-img" alt="..." />
-              </div>
-              <div className="col-md-8">
-                <div className="card-body flexy">
-                  
-                  <h5 className="card-title">@{this.props.loggedInUser.username}</h5>
-                  <p className="card-text">{this.props.loggedInUser.bio}</p>
-                  <p className="card-text"><small className="text-muted">Actions Completed: {this.props.loggedInUser.actionsCompleted}</small></p>
-                  <p className="card-text"><small className="text-muted">Streak: {this.props.loggedInUser.currentStreak}</small></p>
-                </div>
-              </div>
-            </div>
-          </div>
+          {this.handleProfileView()}
           <div className="actioncard">
             <h2>Actions Completed:</h2>
             {this.getActions()}

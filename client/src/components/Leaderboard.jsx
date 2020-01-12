@@ -18,8 +18,10 @@ export default class Leaderboard extends Component {
   }
 
   pleaseChange = (newUser) => {
-    this.setState({
-      loggedInUser: newUser
+    axios.get(`${serverUrl}/user/leaderboard`).then(response => {
+      this.setState({
+        leaderboard: response.data
+      })
     })
   }
 

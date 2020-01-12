@@ -7,16 +7,11 @@
   font-weight: 500;
 }
 
-
 .App {
   font-family: 'Poppins';
   text-align: center;
   background-color: #dbefe1;
   min-height: 100vh;
-}
-
-.App-logo {
-  height: 40vmin;
 }
 
 a {
@@ -29,29 +24,12 @@ a:hover {
   text-decoration: none;
   color: #1d617a;
 }
-.App-header {
-  background-color: #282c34;
-  min-height: 100px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-
-}
-
-.App-link {
-  color: #09d3ac;
-}
 
 nav {
   width: 100vw;
   justify-content: center;
   align-items: center;
 }
-
-
 
 .mainnav {
   display: flex;
@@ -233,8 +211,6 @@ main {
   min-width: 300px;
 }
 
-
-
 .icons {
   padding: 0px 5px;
 }
@@ -320,12 +296,9 @@ button:hover {
   z-index: 5;
 }
 
-
-
 .delete {
   color: red;
 }
-
 
 .noButton {
   font-weight: 500;
@@ -343,3 +316,16 @@ button:hover {
   justify-content: space-around;
   align-items: center;
 }
+
+
+
+@media only screen and (max-width: 500px) {
+
+  .mainnav {
+    align-items: center;
+    justify-content: space-around;
+  }
+  .mainnav h1 {
+    font-size: 42px;
+  }
+ }

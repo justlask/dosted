@@ -7,7 +7,8 @@ import serverUrl from '../../configServer'
 
 export default class Friends extends Component {
   state = {
-    friends: []
+    friends: [],
+    loggedInUser: this.props.loggedInUser
   }
   constructor(props){
     super(props);
@@ -17,15 +18,16 @@ export default class Friends extends Component {
   componentDidMount(){
     axios.get(`${serverUrl}/user/friends/${this.props.loggedInUser._id}`).then(response => {
       this.setState({
-        friends: response.data.friends
+        friends: response.data.friends,
       })
     })
   }
 
-  pleaseChange = () => {
+  pleaseChange = (user) => {
     axios.get(`${serverUrl}/user/friends/${this.props.loggedInUser._id}`).then(response => {
       this.setState({
-        friends: response.data.friends
+        friends: response.data.friends,
+        loggedInUser: user
       })
     })
   }
@@ -35,7 +37,7 @@ export default class Friends extends Component {
       <main>
         <div className="halfrow">
         {this.state.friends.map((friend, i) => {
-          return <UserCard loggedInUser={this.props.loggedInUser} key={i} leader={friend} pleaseChange={this.pleaseChange}/>
+          return <UserCard loggedInUser={this.state.loggedInUser} key={i} leader={friend} pleaseChange={this.pleaseChange}/>
         })}
         </div>
       </main>

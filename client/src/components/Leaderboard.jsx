@@ -12,15 +12,16 @@ export default class Leaderboard extends Component {
   componentDidMount(){
     axios.get(`${serverUrl}/user/leaderboard`).then(response => {
       this.setState({
-        leaderboard: response.data
+        leaderboard: response.data,
       })
     })
   }
 
-  pleaseChange = (newUser) => {
+  pleaseChange = (user) => {
     axios.get(`${serverUrl}/user/leaderboard`).then(response => {
       this.setState({
-        leaderboard: response.data
+        leaderboard: response.data,
+        loggedInUser: user
       })
     })
   }

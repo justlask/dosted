@@ -68,8 +68,8 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} path="/profile" component={Profile} />
             <ProtectedRoute user={this.state.loggedInUser} path='/action' component={TodayAction} />
             <ProtectedRoute user={this.state.loggedInUser} path="/edit" component={EditProfile} getUser={this.getTheUser} />
-            <ProtectedRoute user={this.state.loggedInUser} path="/leaderboard" component={Leaderboard}/>
-            <ProtectedRoute user={this.state.loggedInUser} path='/friends' component={Friends} />
+            <ProtectedRoute user={this.state.loggedInUser} path="/leaderboard" component={Leaderboard} getUser={this.getTheUser}/>
+            <ProtectedRoute user={this.state.loggedInUser} path='/friends' component={Friends} getUser={this.getTheUser} />
             <ProtectedRoute user={this.state.loggedInUser} path='/suggestion' component={NewSuggestion}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/admin' component={AllSuggest} />
             <Route path='/map' render={() => <Map />} />

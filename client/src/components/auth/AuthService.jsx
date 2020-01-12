@@ -83,6 +83,12 @@ class AuthService {
     .then(res => res)
     .catch(err => console.log(err))
   }
+
+  changePassword(password) {
+    return this.service.post('/auth/changepassword', {password})
+    .then(res =>  res.data)
+    .catch(err => console.log(err))
+  }
 }
 
 export default AuthService;

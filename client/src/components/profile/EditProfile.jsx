@@ -11,7 +11,7 @@ export default class EditProfile extends Component {
     super(props);
     this.state = {
         bio: this.props.loggedInUser.bio,
-        image: this.props.loggedInUser.image
+        image: this.props.loggedInUser.image,
     };
     this.service = new AuthService();
   }
@@ -62,6 +62,23 @@ handleFileUpload = e => {
 }
 
 
+changePassword = e => {
+  e.preventDefault();
+  console.log(this.state.password)
+  this.service.changePassword(this.state.password)
+  .then(response => {
+    console.log(response)
+    this.props.history.push('/profile')
+  })
+}
+
+handleChange = e => {
+  this.setState({
+    password: e.target.value
+  })
+  console.log(this.state.password)
+}
+
 
   render() {
     return (
@@ -76,6 +93,14 @@ handleFileUpload = e => {
           <textarea name="bio" className="bio" value={this.state.bio} onChange={ e => this.handleChangeBio(e)} />
           </div>
           <Button className="submitbtn" name="submit" onClick={e => this.handleFormSubmit()} />
+        </form>
+
+        <form className="editform">
+          <div>
+          <label htmlFor="password">Update Password</label><br></br>
+          <input type="text" placeholder="New Password" onChange={(e) => this.handleChange(e)}/>
+          <input type="submit" value="submit" onClick={e => this.changePassword(e)}/>
+          </div>
         </form>
 
           <Button className="submitbtn delete" onClick={this.handleDelete} name="Delete Account" />

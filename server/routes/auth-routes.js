@@ -190,4 +190,18 @@ authRoutes.post('/resetpassword', (req, res, next) => {
 
 });
 
+
+authRoutes.post('/changepassword', (req,res,next) => {
+    console.log(req.body)
+    let password = req.body.password
+
+    const resetSalt     = bcrypt.genSaltSync(10);
+    const newPass = bcrypt.hashSync(password, resetSalt);
+
+    User.findByIdAndUpdate(req.user._id, {password: newPass})
+    .then(theUser => {
+        res.json('your password has been changed')
+    })
+});
+
 module.exports = authRoutes;

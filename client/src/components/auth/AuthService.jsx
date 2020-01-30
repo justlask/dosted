@@ -95,6 +95,12 @@ class AuthService {
     .then(res => res.data)
     .catch(err => console.log(err))
   }
+
+  getLeaderBoard = () => {
+    return this.service.get('/user/leaderboard')
+    .then(res => res.data)
+    .catch(err => console.log(err))
+  }
 }
 
 export default AuthService;

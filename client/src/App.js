@@ -73,7 +73,6 @@ class App extends Component {
             <ProtectedRoute user={this.state.loggedInUser} path='/suggestion' component={NewSuggestion}/>
             <ProtectedRoute user={this.state.loggedInUser} path='/admin' component={AllSuggest} />
             <Route path='/map' render={() => <Map />} />
-                        {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} /> */}
           </Switch>
           <Footer />
         </div>
@@ -89,8 +88,6 @@ class App extends Component {
               <Route exact path='/login' render={(props) => <Login user={this.state.loggedInUser} {...props} getUser={this.getTheUser}/>}/>
               <Route path="/forgot" render={() => <ForgotPass />} />
               <Route path="/reset/:username/:token" render={() => <ResetPass />} />
-              {/* <ProtectedRoute user={this.state.loggedInUser} path='/projects/:id' component={ProjectDetails} />
-              <ProtectedRoute user={this.state.loggedInUser} path='/projects' component={ProjectList} /> */}
             </Switch>
           <Footer />
         </div>

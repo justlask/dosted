@@ -5,7 +5,7 @@ const userSchema = new Schema({
   username: String,
   email: String,
   bio: String,
-  password: String,
+  password: { type: String, select: false },
   image: {type: String, default: 'https://www.bsn.eu/wp-content/uploads/2016/12/user-icon-image-placeholder-300-grey.jpg'},
   actionsCompleted: {type: Number, default: 0},
   currentStreak: {type: Number, default: 0},

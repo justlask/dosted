@@ -5,12 +5,15 @@ import axios from 'axios'
 import serverUrl from '../configServer'
 
 class Map extends Component {
-    state = {
-        center: {
-            lat: 44,
-            lng: -12
-        },
-        zoom: 8
+    constructor(props) {
+        super(props);
+        this.state = {
+            center: {
+                lat: 44,
+                lng: -12
+            },
+            zoom: 8
+        }
     }
 
     componentDidMount() {
@@ -34,32 +37,32 @@ class Map extends Component {
         })
     }
 
-   renderMap = () => {
-       if(!this.state.key){
+    renderMap = () => {
+        if (!this.state.key) {
             return <div>...loading</div>
-       }
-    return (
-        <div className="map">
-            <div>
+        }
+        return (
+            <div className="map">
+                <div>
+                </div>
+                <GoogleMapReact
+                    bootstrapURLKeys={{ key: this.state.key }}
+                    defaultCenter={this.state.center}
+                    defaultZoom={this.state.zoom}
+                >
+
+                    {this.handleMarkers()}
+                </GoogleMapReact>
             </div>
-            <GoogleMapReact
-                bootstrapURLKeys={{key: this.state.key}}
-                defaultCenter={this.state.center}
-                defaultZoom={this.state.zoom}
-            >
-        
-            {this.handleMarkers()}
-            </GoogleMapReact>
-        </div>
-    )
-   }
+        )
+    }
 
 
-   
-   render() {
-       return (
+
+    render() {
+        return (
             this.renderMap()
-       )
-   }
+        )
+    }
 }
 export default Map;

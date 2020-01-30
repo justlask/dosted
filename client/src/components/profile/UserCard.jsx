@@ -16,9 +16,8 @@ export default class UserCard extends Component {
     let friendID = this.props.leader._id
     this.service.follow(userID, friendID)
     .then(response => {
-      console.log(response)
       //need to refresh this card to show unfollow!!!
-      this.props.pleaseChange(response)
+      this.props.updateUser(response);
     }).catch(err => console.log(err))
   }
 
@@ -27,8 +26,7 @@ export default class UserCard extends Component {
     let friendID = this.props.leader._id
     this.service.unfollow(userID, friendID)
     .then(response => {
-      console.log(response)
-      this.props.pleaseChange(response)
+      this.props.updateUser(response);
       //need to refresh this card to show unfollow!!!
     }).catch(err => console.log(err))
   }

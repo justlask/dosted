@@ -135,6 +135,14 @@ router.get('/profile/:id', (req,res,next) => {
   User.findById(req.params.id).populate('actions').then(data => { res.json(data)}).catch(err => console.log(err))
 })
 
+router.get('/friends', (req,res,next) => {
+  User.findById(req.user.id)
+  .populate('friends')
+  .then(data => {
+    res.json(data.friends)
+  })
+})
+
 
 
 module.exports = router;
